@@ -1,0 +1,45 @@
+.NavBar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: oklch(0.145 0 0);
+    padding: 20px
+}
+
+.NavBar p {
+    color: white;
+    text-align: left;
+    margin-left: 15px;
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+}
+
+/* Base del botón */
+.NavLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-size: small;
+    transition: background-color 0.2s, transform 0.1s;
+}
+/* Cuando está activo */
+.activo {
+    background-color: rgb(0, 153, 102);
+    /* Verde */
+}
+
+.NavLink:hover:not(.activo){
+    background-color: #b0b0b05c;
+    /* transform: scale(1.03); */
+}
+
