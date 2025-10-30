@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Perfil from './pages/Perfil';
+import UsuarioProvider from "./components/UsuarioProvider";
 import CreatePost from './pages/CreatePost';
 import Post from './pages/Post';
 import NavBar from './components/NavBar';
@@ -12,7 +13,7 @@ import Register from './pages/Register';
 function App() {
 
   return (
-    <>
+      <UsuarioProvider>
       <Header />
       <NavBar />
       <main className="MainContent">
@@ -25,7 +26,7 @@ function App() {
           <Route path="/post" element={<Post />} />
         </Routes>
       </main>
-    </>
+      </UsuarioProvider>
 
   )
 }

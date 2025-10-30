@@ -1,5 +1,5 @@
 export default function Buscador() {
   return (
-    <div>Buscador</div>
+    <p>Buscador</p>
   )
 }

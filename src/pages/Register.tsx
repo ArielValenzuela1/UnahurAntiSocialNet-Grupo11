@@ -1,6 +1,6 @@
 import { UserPlus } from 'lucide-react';
 import style from "./Register.module.css";
-import FondoUnahur from '../components/fondoUnahur';
+import FondoUnahur from '../components/FondoUnahur';
 import { Link } from 'react-router-dom';
 
 export default function Register() {

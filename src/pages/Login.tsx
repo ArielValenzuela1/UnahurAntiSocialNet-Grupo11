@@ -1,13 +1,22 @@
 import { LogIn } from 'lucide-react';
 import style from "./Login.module.css";
-import FondoUnahur from '../components/fondoUnahur';
+import FondoUnahur from '../components/FondoUnahur';
 import { Link } from 'react-router-dom';
+import { useContext,useState } from "react";
+import { UsuarioContext } from "../components/UsuarioContext";
 
 
 export default function Login() {
+  const { setUsuario } = useContext(UsuarioContext)!;
+  const [nombre, setNombre] = useState("");
+
+  function enviarForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setUsuario({ nombre, logueado: true });
+  }
+
   return (
     <>
-
       <div className={`d-flex align-items-center justify-content-center vh-100 text-light flex-column`}>
         
         <div className="text-center mb-4">
@@ -22,7 +31,7 @@ export default function Login() {
           
           <p className="card-title">Iniciar Sesión</p>
           <p className={`card-subtitle mb-2 ${style.subtituloCard}`}>Ingresa tu nickname y contraseña</p>
-          <form>
+          <form onSubmit={enviarForm}>
             <div className="mb-3">
               <label htmlFor="nickname" className="form-label">
                 Nickname
@@ -32,6 +41,7 @@ export default function Login() {
                 id="nickname"
                 className={`form-control text-light border-secondary ${style.inputColor}`}
                 placeholder="tu_nickname"
+                onChange={(e) => setNombre(e.target.value)}
               />
             </div>
 

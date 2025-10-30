@@ -1,4 +1,4 @@
-import FondoUnahur from "./fondoUnahur";
+import FondoUnahur from "./FondoUnahur";
 
 export default function LogoInicio() {
   return (
