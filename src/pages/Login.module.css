@@ -1,4 +1,50 @@
-.fondoUnahur{
+.fondoUnaHur {
     background: #57C785;
-    background: linear-gradient(60deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%);
+    background: linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%);
+
+    border-radius: 8px;
+    max-width: 80px;
+    height: auto;
+}
+
+.cardForm {
+    background: rgb(15, 23, 43);
+    border: solid 1.5px #304057;
+    color: #C1E8F0;
+}
+
+.cardForm label {
+    font-weight: 500;
+}
+
+.inputColor {
+    background: rgb(21, 27, 41);
+    color: #C1E8F0 !important;
+}
+
+
+.inputColor:focus {
+    background: rgb(21, 27, 41);
+    color: #C1E8F0;
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 146, 0.25);
+    border-color: #00d492;
+}
+
+.inputColor::placeholder {
+    color: #50595c;
+    opacity: 1;
+}
+
+.titulo {
+    color: #00D492 !important;
+    font-size: 1.7rem;
+}
+
+.subtituloCard {
+    color: #c1e8f09c;
+}
+
+.btnIniciar {
+    font-weight: 500;
+    color: #000 !important;
 }
