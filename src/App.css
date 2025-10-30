@@ -3,9 +3,13 @@
 }
 
 body, #root {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.MainContent {
+  padding-top: 80px; /* igual a la altura de tu Header */
 }

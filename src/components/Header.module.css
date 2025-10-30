@@ -1,0 +1,14 @@
+.Header {
+    display: flex;
+    position: fixed;
+    height: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: oklch(0.145 0 0);
+    padding: 0px 100px
+}

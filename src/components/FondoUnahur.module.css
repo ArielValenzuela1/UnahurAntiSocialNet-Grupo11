@@ -1,0 +1,7 @@
+.fondoUnaHur {
+    background: #57C785;
+    background: linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%);
+    border-radius: 8px;
+    max-width: 80px;
+    height: auto;
+}

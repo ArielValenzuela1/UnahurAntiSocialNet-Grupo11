@@ -1,5 +1,6 @@
 import { LogIn } from 'lucide-react';
 import style from "./Login.module.css";
+import FondoUnahur from '../components/fondoUnahur';
 
 export default function Login() {
   return (
@@ -8,9 +9,9 @@ export default function Login() {
       <div className={`d-flex align-items-center justify-content-center vh-100 text-light flex-column`}>
         
         <div className="text-center mb-4">
-            <div className={` ${style.fondoUnaHur} d-inline-flex align-items-center justify-content-center p-3`}>
+            <FondoUnahur>
               <LogIn />
-            </div>
+            </FondoUnahur>
             <p className={`mt-3 mb-1 text-light ${style.titulo}`}>UnaHur Anti-Social Net</p>
             <p className="text-secondary mb-0">Inicia sesión para continuar</p>
           </div>
