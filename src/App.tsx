@@ -7,6 +7,7 @@ import CreatePost from './pages/CreatePost';
 import Post from './pages/Post';
 import NavBar from './components/NavBar';
 import Header from './components/Header';
+import Register from './pages/Register';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/crear-post" element={<CreatePost />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/post" element={<Post />} />

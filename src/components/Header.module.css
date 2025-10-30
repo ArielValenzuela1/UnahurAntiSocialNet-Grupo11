@@ -1,7 +1,7 @@
 .Header {
     display: flex;
     position: fixed;
-    height: 50px;
+    height: 60px;
     margin-bottom: 50px;
     width: 100%;
     justify-content: space-between;
@@ -9,6 +9,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    background-color: oklch(0.145 0 0);
-    padding: 0px 100px
+    background-color: #0F172B;
+    padding: 0px 100px;
+    border-bottom: solid 1px rgb(49, 65, 88);
 }

@@ -8,12 +8,12 @@
     z-index: 1;
     top: 50px;
     right: 0;
-    background-color: oklch(0.145 0 0);
+    background-color: #0F172B;
     padding: 20px
 }
 
 .NavBar p {
-    color: white;
+    color: rgb(104, 152, 167);
     text-align: left;
     margin-left: 15px;
     font-size: 12px;
@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: white;
+    color: rgb(202, 213, 226);
     text-decoration: none;
     padding: 0.6rem 1rem;
     border-radius: 10px;

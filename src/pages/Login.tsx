@@ -1,6 +1,8 @@
 import { LogIn } from 'lucide-react';
 import style from "./Login.module.css";
 import FondoUnahur from '../components/fondoUnahur';
+import { Link } from 'react-router-dom';
+
 
 export default function Login() {
   return (
@@ -43,8 +45,8 @@ export default function Login() {
                 className={`form-control text-light border-secondary ${style.inputColor}`}
                 placeholder="********"
               />
-              <div id="passwordHelp" className="form-text text-secondary">
-                La contraseña es: 123456
+              <div className="form-text text-secondary">
+                <p>La contraseña es: 123456</p>
               </div>
             </div>
 
@@ -56,9 +58,11 @@ export default function Login() {
           <div className="text-center mt-3">
             <small className="text-secondary">
               ¿No tienes cuenta?{" "}
-              <a href="/register" className="text-info text-decoration-none">
+
+              <Link to="/register" className="text-info text-decoration-none">
                 Regístrate
-              </a>
+              </Link>
+
             </small>
           </div>
         </div>

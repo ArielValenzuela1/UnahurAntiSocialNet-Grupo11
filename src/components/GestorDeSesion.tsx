@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 export default function BotonSesion() {
   return (
-    <Link to={"/login"}>
-    IniciarSesion</Link>
+    //Usar este colo color: #00D492 
+    <NavLink to={"/login"} >
+    Iniciar Sesion</NavLink>
   )
 }
