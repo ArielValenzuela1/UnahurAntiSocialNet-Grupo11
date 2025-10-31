@@ -1,0 +1,23 @@
+.formControl:focus {
+  border-color: #6c757d !important;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); 
+}
+
+.formControl{
+    background-color: #151B29 !important;
+    width: 500px;
+    height: 100%;
+}
+
+.formControl::placeholder{
+    color: rgb(161, 161, 161);
+   
+    font-size: 0.9rem;
+}
+
+.cardPost{
+    background-color: rgb(15, 23, 43) !important;
+    border: solid 1px rgb(49, 65, 88);
+    border-radius: 8px;
+    color: #ffffff;
+}
