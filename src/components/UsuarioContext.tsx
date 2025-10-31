@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
 export interface Usuario {
-  nombre: string;
+  id: number;
+  nickName: string;
+  email: string;
   logueado: boolean;
 }
 
@@ -11,6 +13,6 @@ export interface UsuarioContextType {
 }
 // Puede ser undefined al inicio, por eso usamos este tipo
 export const UsuarioContext = createContext<UsuarioContextType>({
-  usuario: { nombre: "", logueado: false },
+  usuario: { id: 0, nickName: "", email: "", logueado: false },
   setUsuario: () => {}, // función vacía por defecto
 });
