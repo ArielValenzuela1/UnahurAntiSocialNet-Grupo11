@@ -1,7 +1,26 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardPostHome } from "../components/CardPostHome";
-import type { Post } from "../services/api";
-import { getPosts } from "../services/api";
+
+interface User {
+  id: number;
+  nickName: string;
+  email: string;
+}
+
+interface PostImage {
+  id: number;
+  url: string;
+}
+
+interface Post {
+  id: number;
+  description: string;
+  createdAt?: string;
+  userId: number;
+  user?: User;
+  images?: PostImage[];
+  commentCount?: number;
+}
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -9,7 +28,35 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState<number>(6);
 
-  // Cargar publicaciones al montar el componente
+  const API_URL = "http://localhost:3001";
+
+  const getPosts = async (): Promise<Post[]> => {
+    const res = await fetch(`${API_URL}/posts`);
+    if (!res.ok) throw new Error("Error al obtener publicaciones");
+
+    const posts: Post[] = await res.json();
+
+    const enriched = await Promise.all(
+      posts.map(async (post) => {
+        try {
+          const [userRes, imagesRes] = await Promise.all([
+            fetch(`${API_URL}/users/${post.userId}`),
+            fetch(`${API_URL}/postimages/post/${post.id}`),
+          ]);
+
+          const user = userRes.ok ? await userRes.json() : undefined;
+          const images = imagesRes.ok ? await imagesRes.json() : [];
+
+          return { ...post, user, images };
+        } catch {
+          return post;
+        }
+      })
+    );
+
+    return enriched;
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -25,7 +72,6 @@ export default function Home() {
     fetchPosts();
   }, []);
 
-  // Manejar “scroll infinito” (simulado)
   useEffect(() => {
     const handleScroll = () => {
       const bottom =
@@ -57,7 +103,6 @@ export default function Home() {
 
   return (
     <div className="container py-5">
-      {/* Hero principal */}
       <div className="text-center mb-5">
         <h1 className="fw-bold text-light mb-3">UnaHur Anti-Social Net</h1>
         <p className="text-secondary fs-5">
@@ -66,7 +111,6 @@ export default function Home() {
         <hr className="border-secondary w-50 mx-auto" />
       </div>
 
-      {/* Lista de publicaciones */}
       <div className="mx-auto" style={{ maxWidth: "700px" }}>
         {posts.slice(0, visibleCount).map((post) => (
           <CardPostHome key={post.id} post={post} />
