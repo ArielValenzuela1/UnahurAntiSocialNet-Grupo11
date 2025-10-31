@@ -1,0 +1,20 @@
+.divLogo{
+    width: 40px;
+    height: 40px;
+    display: flex;                /* Centra el contenido */
+    justify-content: center;      /* Centra horizontalmente */
+    align-items: center;          /* Centra verticalmente */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.logo{
+    background: transparent;
+    height: auto;
+    width: 28px;
+}
+
+.redSocial{
+    color: #00D492 !important;
+    margin-left: 15px !important;
+}
