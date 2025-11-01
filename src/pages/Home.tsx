@@ -12,15 +12,31 @@ interface PostImage {
   url: string;
 }
 
-interface Post {
+export interface Post {
   id: number;
   description: string;
-  createdAt?: string;
   userId: number;
-  user?: User;
-  images?: PostImage[];
-  commentCount?: number;
+
+  User?: {
+    id: number;
+    nickName: string;
+    email: string;
+  };
+
+  Tags?: {
+    id: number;
+    name: string;
+  }[];
+
+  images?: {
+    id: number;
+    url: string;
+  }[];
+
+  createdAt?: string;  
+  updatedAt?: string;   
 }
+
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);

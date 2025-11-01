@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import type { Post } from "../services/api";
+import type { Post } from "../pages/Home";
 import { Eye, MessageCircle } from "lucide-react";
 
 interface CardPostHomeProps {
@@ -8,33 +8,45 @@ interface CardPostHomeProps {
 }
 
 export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
-  const images = post.images ?? []; // evita undefined
+  const [commentCount, setCommentCount] = useState<number>(0);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/comments/post/${post.id}`)
+      .then(res => res.json())
+      .then(data => setCommentCount(data.length))
+      .catch(() => setCommentCount(0));
+  }, [post.id]);
+
+  const images = post.images ?? [];
   const imageCount = images.length;
   const maxImagesToShow = 3;
 
   return (
     <div className="card bg-dark text-light border border-secondary mb-4 shadow-sm">
-      {/* Header - Usuario */}
       <div className="card-header bg-transparent border-0 d-flex align-items-center">
         <Link
           to={`/user/${post.userId}`}
           className="d-flex align-items-center text-decoration-none text-light"
         >
+
           <div
             className="rounded-circle p-2 d-flex align-items-center justify-content-center me-2"
             style={{
               width: "45px",
               height: "45px",
-              background: "linear-gradient(135deg, #10b981, #06b6d4)",
+              background: "linear-gradient(135deg, #0dcaf0, #20c997)", // info + success
               color: "#0f172a",
               fontWeight: 700,
               fontSize: "1.2rem",
             }}
           >
-            {post.user?.nickName.charAt(0).toUpperCase()}
+            {post.User?.nickName.charAt(0).toUpperCase()}
           </div>
+
           <div>
-            <h6 className="mb-0 text-emerald-400">{post.user?.nickName}</h6>
+            <h6 className="mb-1 text-info fw-semibold fs-4">
+              {post.User?.nickName}
+            </h6>
             {post.createdAt && (
               <small className="text-muted">
                 {new Date(post.createdAt).toLocaleDateString("es-ES", {
@@ -48,13 +60,11 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
         </Link>
       </div>
 
-      {/* Descripción */}
       <div className="card-body pt-1">
         <p className="mb-3" style={{ whiteSpace: "pre-wrap" }}>
           {post.description}
         </p>
 
-        {/* Imágenes */}
         {imageCount > 0 && (
           <div className={`mt-3 ${imageCount === 1 ? "" : "row g-1"}`}>
             {images.slice(0, maxImagesToShow).map((image, index) => (
@@ -68,7 +78,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                   className="img-fluid rounded w-100"
                   style={{ objectFit: "cover", maxHeight: "400px" }}
                 />
-                {/* Overlay +N */}
+
                 {index === maxImagesToShow - 1 && imageCount > maxImagesToShow && (
                   <Link
                     to={`/post/${post.id}`}
@@ -89,11 +99,10 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
         )}
       </div>
 
-      {/* Footer */}
       <div className="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center text-muted gap-2">
           <MessageCircle size={18} />
-          <span>{post.commentCount || 0}</span>
+          <span>{commentCount}</span>
         </div>
 
         <Link
