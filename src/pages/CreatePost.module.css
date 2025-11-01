@@ -5,8 +5,10 @@
 
 .formControl{
     background-color: #151B29 !important;
-    width: 500px;
+    border-color: #314158;
+    width: 700px;
     height: 100%;
+    resize: none;
 }
 
 .formControl::placeholder{
@@ -20,4 +22,59 @@
     border: solid 1px rgb(49, 65, 88);
     border-radius: 8px;
     color: #ffffff;
+}
+
+.divCrearImagen{
+    margin-top: 10px;
+}
+
+.divSeccionImagen{
+    margin-top: 20px;
+}
+
+.btnBorrarImagenDes{
+    display: none;
+}
+
+.btnBorrarImagenAct{
+    
+}
+
+.inputUrlImagen{
+    background-color: #151B29 !important;
+    border-radius: 5px !important;
+    border: solid 1px  #314158;
+    color: #ffffff;
+}
+
+.inputUrlImagen:focus {
+  border-color: #6c757d !important;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); 
+  color: #ffffff;
+}
+
+.inputUrlImagen::placeholder{
+    color: rgb(161, 161, 161);
+   
+    font-size: 0.9rem;
+}
+
+.botonAgregarImagen{
+    background-color: rgb(21, 27, 41);
+    color: rgb(179, 213, 226);
+    border-color: #262626;
+
+    margin-top: 10px;
+   
+    max-width: 400px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 3px 10px !important;
+    
+}
+
+.botonAgregarImagen:hover{
+    color: #ECFAFA;
+    background-color: rgb(26, 30, 40);
+    border-color: #262626;
 }
