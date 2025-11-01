@@ -19,10 +19,11 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
 
   const images = post.images ?? [];
   const imageCount = images.length;
-  const maxImagesToShow = 3;
+  const maxImagesToShow = 4;
 
   return (
-    <div className="card bg-dark text-light border border-secondary mb-4 shadow-sm">
+    <div className="card text-light border border-secondary mb-4 shadow-sm"
+      style={{ background: "rgb(15, 23, 43)" }}>
       <div className="card-header bg-transparent border-0 d-flex align-items-center">
         <Link
           to={`/user/${post.userId}`}
@@ -34,8 +35,8 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
             style={{
               width: "45px",
               height: "45px",
-              background: "linear-gradient(135deg, #0dcaf0, #20c997)", // info + success
-              color: "#0f172a",
+              background: "linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%)", // info + success
+              color: "#FFFFFF",
               fontWeight: 700,
               fontSize: "1.2rem",
             }}
@@ -48,7 +49,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
               {post.User?.nickName}
             </h6>
             {post.createdAt && (
-              <small className="text-muted">
+              <small className="">
                 {new Date(post.createdAt).toLocaleDateString("es-ES", {
                   day: "numeric",
                   month: "short",
@@ -61,7 +62,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
       </div>
 
       <div className="card-body pt-1">
-        <p className="mb-3" style={{ whiteSpace: "pre-wrap" }}>
+        <p className="mb-3" style={{ whiteSpace: "pre-wrap", color: "#E2E8E4" }}>
           {post.description}
         </p>
 
@@ -76,7 +77,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                   src={image.url}
                   alt={`Post ${index + 1}`}
                   className="img-fluid rounded w-100"
-                  style={{ objectFit: "cover", maxHeight: "400px" }}
+                  style={{ objectFit: "cover", maxHeight: "300px" }}
                 />
 
                 {index === maxImagesToShow - 1 && imageCount > maxImagesToShow && (
