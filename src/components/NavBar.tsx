@@ -5,8 +5,8 @@ import { useState, useContext } from "react";
 import { UsuarioContext } from "./UsuarioContext"; 
 
 export default function NavBar() {
-    //const { usuario } = useContext(UsuarioContext); 
-    const usuario = { nombre: "Test", logueado: true }; //Codigo para testear el navbar sin registrarse 
+    const { usuario } = useContext(UsuarioContext); 
+     //Codigo para testear el navbar sin registrarse 
     const [menuAbierto, setMenuAbierto] = useState(false); 
 
     const toggleMenu = () => {

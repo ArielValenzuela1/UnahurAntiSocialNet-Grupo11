@@ -43,12 +43,12 @@ export default function Login() {
         return res.json();
       })
       .then((usuarios: UsuarioDeLaAPI[]) => {
-        if (usuarios.length === 0) {
+        const usuarioEncontrado = usuarios.find(usuario => usuario.nickName === nickName);
+
+        if(!usuarioEncontrado){
           setError(`El usuario "${nickName}" no existe.`);
           return;
         }
-
-        const usuarioEncontrado = usuarios[0];
 
         const usuarioParaContexto: Usuario = {
           id: usuarioEncontrado.id,
@@ -56,11 +56,12 @@ export default function Login() {
           email: usuarioEncontrado.email,
           logueado: true,
         };
-
+        
         setUsuario(usuarioParaContexto);
         localStorage.setItem("user", JSON.stringify(usuarioParaContexto));
-
         navigate("/Perfil");
+
+
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((err: any) => {

@@ -3,7 +3,7 @@ import CirculoLetra from "../components/CirculoLetra";
 export default function Perfil() {
   return (
     <>
-      <div style={{display: "flex", alignItems: "center"}}>
+      <div style={{display: "flex", alignItems: "center",minWidth: "80vw",margin: "200px"}}>
         <CirculoLetra letra='L' size={100} />
         <div>
           <h3>nombre Usuario</h3>

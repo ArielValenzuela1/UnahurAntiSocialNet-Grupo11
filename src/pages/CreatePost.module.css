@@ -6,7 +6,7 @@
 .formControl{
     background-color: #151B29 !important;
     border-color: #314158;
-    width: 700px;
+    width: 100%;
     height: 100%;
     resize: none;
 }
