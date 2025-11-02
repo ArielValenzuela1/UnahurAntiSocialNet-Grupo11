@@ -1,15 +1,21 @@
+import { useContext } from "react";
 import BotonVerde from "../components/BotonVerde";
 import CirculoLetra from "../components/CirculoLetra";
 import style from "./Perfil.module.css";
 import { User } from 'lucide-react';
+import { UsuarioContext } from "../components/UsuarioContext";
 
 export default function Perfil() {
+  const { usuario } = useContext(UsuarioContext); 
+  if(!usuario.logueado){
+    return <h1 className="w-100 text-center">Debes iniciar sesion para continuar</h1>
+  }
   return (
     <>
       <div className={style.perfilHeader}>
-        <CirculoLetra letra='L' size={90} />
+        <CirculoLetra letra={usuario.nickName[0]} size={90} />
         <div>
-          <h1>nombre Usuario</h1>
+          <h1>{usuario.nickName}</h1>
           <div className={style.statsContainer}>
             <div>
               <p className="text-secondary">publicaciones</p>
@@ -25,7 +31,7 @@ export default function Perfil() {
             </div>
             <div>
               <p className="text-secondary">Miembro Desde</p>
-              <p>noviembre de 2025</p>
+              <p>{usuario.miembroDesde}</p>
             </div>
           </div>
         </div>

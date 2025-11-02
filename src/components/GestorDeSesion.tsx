@@ -10,7 +10,7 @@ export default function BotonSesion() {
   const navigate = useNavigate();
   const { usuario, setUsuario } = useContext(UsuarioContext);
   function CerrarSesion() {
-    setUsuario({ nombre: "", logueado: false })
+    setUsuario({ id: 0, nickName: "", email: "",miembroDesde: "" ,logueado: false })
     navigate("/")
   }
   return (
@@ -19,7 +19,7 @@ export default function BotonSesion() {
       {usuario.logueado ? (
         <div style={{ display: "flex" , alignItems: "center"}}>
           <Link to={"/perfil"}>
-            <CirculoLetra letra='L'/>
+            <CirculoLetra letra={usuario.nickName[0]}/>
           </Link>
           <button onClick={CerrarSesion} style={{color: "red",backgroundColor: "transparent"}}>
             <LogIn />

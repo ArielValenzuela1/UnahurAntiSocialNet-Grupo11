@@ -10,6 +10,7 @@ type UsuarioDeLaAPI = {
   id: number;
   nickName: string;
   email: string;
+  createdAt: string;
 };
 
 export default function Login() {
@@ -55,6 +56,7 @@ export default function Login() {
           id: usuarioEncontrado.id,
           nickName: usuarioEncontrado.nickName,
           email: usuarioEncontrado.email,
+          miembroDesde: new Date(usuarioEncontrado.createdAt).toLocaleDateString("es-AR"),
           logueado: true,
         };
         

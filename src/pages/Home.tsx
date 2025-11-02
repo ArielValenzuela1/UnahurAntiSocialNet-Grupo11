@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardPostHome } from "../components/CardPostHome";
 
-interface User {
-  id: number;
-  nickName: string;
-  email: string;
-}
+// interface User {
+//   id: number;
+//   nickName: string;
+//   email: string;
+// }
 
-interface PostImage {
-  id: number;
-  url: string;
-}
+// interface PostImage {
+//   id: number;
+//   url: string;
+// }
 
 export interface Post {
   id: number;

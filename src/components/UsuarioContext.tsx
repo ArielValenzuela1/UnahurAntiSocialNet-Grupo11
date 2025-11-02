@@ -5,6 +5,7 @@ export interface Usuario {
   nickName: string;
   email: string;
   logueado: boolean;
+  miembroDesde: string;
 }
 
 export interface UsuarioContextType {
@@ -13,6 +14,6 @@ export interface UsuarioContextType {
 }
 // Puede ser undefined al inicio, por eso usamos este tipo
 export const UsuarioContext = createContext<UsuarioContextType>({
-  usuario: { id: 0, nickName: "", email: "", logueado: false },
+  usuario: { id: 0, nickName: "", email: "",miembroDesde: "" ,logueado: false },
   setUsuario: () => {}, // función vacía por defecto
 });
