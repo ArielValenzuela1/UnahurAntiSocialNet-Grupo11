@@ -4,6 +4,10 @@
   color-scheme: light dark;
   --color-texto: rgba(255, 255, 255, 0.87);
   --color-fondo: rgb(2, 6, 24);
+  --color-contenedor: rgb(15, 23, 43);
+  --color-verde: #00D492;
+  
+  --borde: solid 1.5px #304057;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,7 +27,6 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
   line-height: 1.1;
 }
 

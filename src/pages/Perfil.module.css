@@ -1,0 +1,42 @@
+.perfilHeader{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    background: var(--color-contenedor);
+    border: var(--borde);
+
+    margin: 15px;
+    padding: 20px;
+    border-radius: 8px;
+}
+.perfilHeader h1{
+    color: var(--color-verde);
+}
+.statsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.statsContainer p{
+    margin: 0;
+    text-align: center;
+}
+.misPublicaciones{
+    margin: 15px;
+    padding: 20px;
+}
+
+.misPublicaciones div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: var(--color-contenedor);
+    border: var(--borde);
+    border-radius: 8px;
+    padding: 29px;
+}

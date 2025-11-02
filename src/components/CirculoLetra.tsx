@@ -15,6 +15,7 @@ export default function CirculoLetra({
       style={{
         background: "linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%)",
         width: size,
+        minWidth: size,
         height: size,
         color: colorLetra,
         borderRadius: "50%",          // Hace que sea circular

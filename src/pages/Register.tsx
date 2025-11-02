@@ -3,6 +3,7 @@ import style from "./Register.module.css";
 import FondoUnahur from "../components/FondoUnahur";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import BotonVerde from "../components/BotonVerde";
 
 type Usuario = {
   id: number;
@@ -76,7 +77,7 @@ export default function Register() {
 
         <div
           className={`card p-4 ${style.cardForm}`}
-          style={{ width: "100%", minWidth: "450px" }}
+          style={{ width: "100%", maxWidth: "450px"}}
         >
           <p className="card-title">Registrarse</p>
           <p className={`card-subtitle mb-2 ${style.subtituloCard}`}>
@@ -121,13 +122,9 @@ export default function Register() {
             {error && (
               <div className="alert alert-danger text-center mt-3">{error}</div>
             )}
-
-            <button
-              type="submit"
-              className={`btn btn-success w-100 ${style.btnIniciar} mt-3`}
-            >
+            <BotonVerde ocupa100>
               Registrarse
-            </button>
+            </BotonVerde>
           </form>
 
           <div className="text-center mt-3">

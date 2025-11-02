@@ -4,6 +4,7 @@ import FondoUnahur from "../components/FondoUnahur";
 import { useContext, useState } from "react";
 import { UsuarioContext, type Usuario } from "../components/UsuarioContext";
 import { Link, useNavigate } from "react-router-dom";
+import BotonVerde from "../components/BotonVerde";
 
 type UsuarioDeLaAPI = {
   id: number;
@@ -86,7 +87,7 @@ export default function Login() {
 
         <div
           className={`card p-4 ${style.cardForm}`}
-          style={{ width: "100%", minWidth: "450px" }}
+          style={{ width: "100%", maxWidth: "450px" }}
         >
           <p className="card-title">Iniciar Sesión</p>
           <p className={`card-subtitle mb-2 ${style.subtituloCard}`}>
@@ -128,12 +129,9 @@ export default function Login() {
               <div className="alert alert-danger text-center mt-3">{error}</div>
             )}
 
-            <button
-              type="submit"
-              className={`btn btn-success w-100 ${style.btnIniciar}`}
-            >
+            <BotonVerde ocupa100>
               Iniciar Sesión
-            </button>
+            </BotonVerde>
           </form>
 
           <div className="text-center mt-3">

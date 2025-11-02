@@ -1,38 +1,43 @@
+import BotonVerde from "../components/BotonVerde";
 import CirculoLetra from "../components/CirculoLetra";
+import style from "./Perfil.module.css";
+import { User } from 'lucide-react';
 
 export default function Perfil() {
   return (
     <>
-      <div style={{display: "flex", alignItems: "center",minWidth: "80vw",margin: "200px"}}>
-        <CirculoLetra letra='L' size={100} />
+      <div className={style.perfilHeader}>
+        <CirculoLetra letra='L' size={90} />
         <div>
-          <h3>nombre Usuario</h3>
-          <div style={{display: "flex"}}>
+          <h1>nombre Usuario</h1>
+          <div className={style.statsContainer}>
             <div>
-              <p>publicaciones</p>
-              <p>cantidad</p>
+              <p className="text-secondary">publicaciones</p>
+              <p>0</p>
             </div>
             <div>
-              <p>Seguidores</p>
-              <p>cantidad</p>
+              <p className="text-secondary">Seguidores</p>
+              <p>0</p>
             </div>
             <div>
-              <p>Siguiendo</p>
-              <p>cantidad</p>
+              <p className="text-secondary">Siguiendo</p>
+              <p>0</p>
             </div>
             <div>
-              <p>Miembro Desde</p>
-              <p>fecha</p>
+              <p className="text-secondary">Miembro Desde</p>
+              <p>noviembre de 2025</p>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <h1>Mis Publicaciones</h1>
+      <div className={style.misPublicaciones}>
+        <h2>Mis Publicaciones</h2>
         <div>
-          {/* icono */}
+          <User size={60}/>
           <p>Aún no has creado ninguna publicación</p>
-          <button></button>
+          <BotonVerde >
+            Crear Primera Publicación
+          </BotonVerde>
         </div>
       </div>
     </>

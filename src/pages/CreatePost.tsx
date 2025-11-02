@@ -1,6 +1,7 @@
 import { CircleFadingPlus, X, Image } from "lucide-react";
 import style from "./CreatePost.module.css";
 import { useState } from "react";
+import BotonVerde from "../components/BotonVerde";
 
 export default function CreatePost() {
   const [imagenes, setImagenes] = useState([""]);
@@ -64,9 +65,10 @@ export default function CreatePost() {
       </div>
 
       <div className="d-flex gap-3"> {/*Div botones */}
-        <button type="button" className="btn btn-success d-flex align-items-center gap-2">
+        <BotonVerde>
           <CircleFadingPlus /> Publicar
-        </button>
+        </BotonVerde>
+
         <button type="button" className="btn btn-secondary">
           Cancelar
         </button>
