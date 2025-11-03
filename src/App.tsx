@@ -9,13 +9,14 @@ import Post from './pages/Post';
 import NavBar from './components/NavBar';
 import Header from './components/Header';
 import Register from './pages/Register';
+import SideBar from './components/SideBar';
 
 function App() {
 
   return (
       <UsuarioProvider>
       <Header />
-      <NavBar />
+      <SideBar />
       <main className="MainContent">
         <Routes>
           <Route path="/" element={<Home />} />
