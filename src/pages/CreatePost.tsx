@@ -63,12 +63,13 @@ export default function CreatePost() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-light">
-      <h3>Crear Nueva Publicación</h3>
+    <div className={`${style.crearPost} mx-auto`}>
+    <form onSubmit={handleSubmit} className={`text-light`}>
+      <h3 className={style.tituloCrearPost}>Crear Nueva Publicación</h3>
       <p className="text-secondary">Comparte tu contenido con la comunidad</p>
 
       <div className={`card mb-3 card-body ${style.cardPost}`}>
-        <p>Contenido</p>
+        <p>Contenido del Post</p>
         <label htmlFor="description" className="form-label">Descripción *</label>
         <textarea
           id="description"
@@ -118,5 +119,6 @@ export default function CreatePost() {
         </button>
       </div>
     </form>
+    </div>
   );
 };

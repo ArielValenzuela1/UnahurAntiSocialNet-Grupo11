@@ -17,7 +17,7 @@ export default function BotonSesion() {
       {usuario && usuario.logueado ? (
         <div style={{ display: "flex", alignItems: "center" }}>
           <Link to="/perfil">
-            <CirculoLetra letra={usuario.nickName[0]} />
+            <CirculoLetra size={40} letra={usuario.nickName[0]} />
           </Link>
           <button
             onClick={CerrarSesion}

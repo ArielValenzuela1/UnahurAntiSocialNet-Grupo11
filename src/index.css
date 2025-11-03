@@ -4,10 +4,10 @@
   color-scheme: light dark;
   --color-texto: rgba(255, 255, 255, 0.87);
   --color-fondo: rgb(2, 6, 24);
-  /* estas variables las creo franco */
+
   --color-contenedor: rgb(15, 23, 43);
   --color-verde: #00D492;
-
+  
   --borde: solid 1.5px #304057;
 
   font-synthesis: none;
@@ -16,33 +16,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #00D492;
-  text-decoration: none;
-}
-
 body {
   background-color: var(--color-fondo);
   color: var(--color-texto);
+
+  margin: 0 100px 0 100px;
 }
 
-h1 {
-  line-height: 1.1;
+@media (max-width: 992px) {
+  body {
+  margin-right: 0px;
+  margin-left: 0px;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }

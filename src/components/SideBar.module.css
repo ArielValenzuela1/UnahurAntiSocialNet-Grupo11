@@ -6,12 +6,11 @@
     width: 200px;
     position: fixed;
     z-index: 1000;
-    top: 50px;
+    top: 60px;
     right: 0;
     background-color: #0F172B;
     padding: 20px;
     transition: all 0.3s ease;
-
 }
 
 .MenuToggle {
@@ -45,6 +44,7 @@
     border-radius: 10px;
     font-size: small;
     transition: background-color 0.2s, transform 0.1s;
+    margin-top: 5px;
 }
 
 .activo {

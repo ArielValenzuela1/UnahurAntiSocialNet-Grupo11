@@ -22,12 +22,11 @@ export default function CirculoLetra({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontWeight: "bold",
         fontSize: size / 2,           // Ajusta tamaño de la letra
         userSelect: "none",           // Evita seleccionar la letra
       }}
     >
-      {letra}
+      {letra.toUpperCase()}
     </div>
   );
 }

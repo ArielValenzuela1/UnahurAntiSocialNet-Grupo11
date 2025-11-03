@@ -1,6 +1,7 @@
 .MainContent {
   margin-right: 200px;
-  padding-top: 80px; /* igual a la altura de tu Header */
+  padding-top: 60px; /* igual a la altura de tu Header */
+  
 }
 @media (max-width: 992px) {
   .MainContent {
