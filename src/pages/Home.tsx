@@ -128,7 +128,7 @@ export default function Home() {
       </div>
 
       <div className="mx-auto" style={{ maxWidth: "700px" }}>
-        {posts.slice(0, visibleCount).map((post) => (
+        {posts.slice(0, visibleCount).reverse().map((post) => (
           <CardPostHome key={post.id} post={post} />
         ))}
 
