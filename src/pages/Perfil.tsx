@@ -1,16 +1,17 @@
-import { useContext } from "react";
 import BotonVerde from "../components/BotonVerde";
 import CirculoLetra from "../components/CirculoLetra";
 import style from "./Perfil.module.css";
-import { User } from 'lucide-react';
-import { UsuarioContext } from "../components/UsuarioContext";
+import { User } from "lucide-react";
+import { useAuth } from "../contexts/authContext";
 import { Link } from "react-router-dom";
 
 export default function Perfil() {
-  const { usuario } = useContext(UsuarioContext); 
-  if(!usuario.logueado){
-    return <h1 className="w-100 text-center">Debes iniciar sesion para continuar</h1>
+  const { usuario } = useAuth();
+
+  if (!usuario) {
+    return <h1 className="w-100 text-center">Debes iniciar sesión para continuar</h1>;
   }
+
   return (
     <>
       <div className={style.perfilHeader}>
@@ -19,7 +20,7 @@ export default function Perfil() {
           <h1>{usuario.nickName}</h1>
           <div className={style.statsContainer}>
             <div>
-              <p className="text-secondary">publicaciones</p>
+              <p className="text-secondary">Publicaciones</p>
               <p>0</p>
             </div>
             <div>
@@ -32,24 +33,24 @@ export default function Perfil() {
             </div>
             <div>
               <p className="text-secondary">Miembro Desde</p>
-              <p>{usuario.miembroDesde}</p>
+              <p>{`${new Date(usuario.createdAt).getFullYear()}-${String(
+                new Date(usuario.createdAt).getMonth() + 1
+              ).padStart(2, "0")}`}</p>
             </div>
           </div>
         </div>
       </div>
+
       <div className={style.misPublicaciones}>
         <h2>Mis Publicaciones</h2>
         <div>
-          <User size={60}/>
+          <User size={60} />
           <p>Aún no has creado ninguna publicación</p>
           <Link to="/crear-post">
-          <BotonVerde >
-            
-            Crear Primera Publicación
-          </BotonVerde>
+            <BotonVerde>Crear Primera Publicación</BotonVerde>
           </Link>
         </div>
       </div>
     </>
-  )
+  );
 }
