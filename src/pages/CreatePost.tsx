@@ -2,14 +2,17 @@ import { CircleFadingPlus, X, Image } from "lucide-react";
 import style from "./CreatePost.module.css";
 import { useState } from "react";
 import BotonVerde from "../components/BotonVerde";
+import { useAuth } from "../contexts/authContext";
 
 export default function CreatePost() {
+  const { usuario } = useAuth();
+
   const [imagenes, setImagenes] = useState([""]);
   const [description, setDescripcion] = useState<string>("");
-  
+
   const [error, setError] = useState<string | null>(null);
   const [mensaje, setMensaje] = useState<string | null>(null);
-  
+
 
   const cambiarValor = (index: number, value: string) => {
     const nuevasImg = [...imagenes];
@@ -33,10 +36,10 @@ export default function CreatePost() {
       setError("Por favor ingresa una descripción");
       return;
     }
-    const userId = "2"; // ID de usuario fijo para este ejemplo
+    const userId = usuario?.id;
     const tagsIds: number[] = []; // Tags vacíos para este ejemplo
 
-    const nuevoPost = {description, userId, tagsIds };
+    const nuevoPost = { description, userId, tagsIds };
 
     fetch("http://localhost:3001/posts", {
       method: "POST",
