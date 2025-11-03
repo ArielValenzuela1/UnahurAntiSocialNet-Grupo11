@@ -26,8 +26,16 @@ export default function Login() {
     e.preventDefault();
     setError(null);
 
-    if (!nickName || !password) {
+    if (!nickName && !password) {
       setError("Por favor, completa tu Usuario y Contraseña");
+      return;
+    }
+    else if (!nickName) {
+      setError("Por favor ingresa un nickname");
+      return;
+    }
+    else if (!password) {
+      setError("Por favor ingresa una contraseña");
       return;
     }
 

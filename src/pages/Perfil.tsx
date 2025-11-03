@@ -4,6 +4,7 @@ import CirculoLetra from "../components/CirculoLetra";
 import style from "./Perfil.module.css";
 import { User } from 'lucide-react';
 import { UsuarioContext } from "../components/UsuarioContext";
+import { Link } from "react-router-dom";
 
 export default function Perfil() {
   const { usuario } = useContext(UsuarioContext); 
@@ -41,9 +42,12 @@ export default function Perfil() {
         <div>
           <User size={60}/>
           <p>Aún no has creado ninguna publicación</p>
+          <Link to="/crear-post">
           <BotonVerde >
+            
             Crear Primera Publicación
           </BotonVerde>
+          </Link>
         </div>
       </div>
     </>

@@ -17,13 +17,27 @@ export default function Register() {
   const [mensaje, setMensaje] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const handleInvalid = (e: React.InvalidEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    console.log(e.target.validationMessage);
+    setError(e.target.validationMessage);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setMensaje(null);
 
-    if (!nickName || !email) {
-      setError("Por favor completá todos los campos.");
+    if (!nickName && !email) {
+      setError("Por favor ingresa un nickname y un email");
+      return;
+    }
+    if (!nickName) {
+      setError("Por favor ingresa un nickname");
+      return;
+    }
+    if (!email) {
+      setError("Por favor ingresa un email");
       return;
     }
 
@@ -77,7 +91,7 @@ export default function Register() {
 
         <div
           className={`card p-4 ${style.cardForm}`}
-          style={{ width: "100%", maxWidth: "450px"}}
+          style={{ width: "100%", maxWidth: "450px" }}
         >
           <p className="card-title">Registrarse</p>
           <p className={`card-subtitle mb-2 ${style.subtituloCard}`}>
@@ -97,7 +111,7 @@ export default function Register() {
                 value={nickName}
                 onChange={(e) => setNickName(e.target.value)}
               />
-              {}
+              { }
               <label htmlFor="Email" className="form-label mt-3">
                 Email
               </label>
@@ -107,6 +121,7 @@ export default function Register() {
                 className={`form-control text-light border-secondary ${style.inputColor}`}
                 placeholder="tu_email@gmail.com"
                 value={email}
+                onInvalid={handleInvalid}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -115,13 +130,12 @@ export default function Register() {
             </div>
 
             {mensaje && (
-              <div className="alert alert-success text-center mt-3">
-                {mensaje}
-              </div>
+              <div className="alert alert-success text-center mt-3">{mensaje}</div>
             )}
             {error && (
               <div className="alert alert-danger text-center mt-3">{error}</div>
             )}
+            
             <BotonVerde ocupa100>
               Registrarse
             </BotonVerde>

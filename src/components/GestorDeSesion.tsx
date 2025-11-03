@@ -11,6 +11,7 @@ export default function BotonSesion() {
   const { usuario, setUsuario } = useContext(UsuarioContext);
   function CerrarSesion() {
     setUsuario({ id: 0, nickName: "", email: "",miembroDesde: "" ,logueado: false })
+    localStorage.removeItem("user");
     navigate("/")
   }
   return (

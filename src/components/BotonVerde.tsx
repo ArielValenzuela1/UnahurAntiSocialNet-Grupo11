@@ -1,15 +1,17 @@
 interface BotonVerdeProps {
-  children?: React.ReactNode;          // La letra que va adentro
-  ocupa100?: boolean;          // Tamaño del círculo en px (opcional)
+    children?: React.ReactNode;
+    ocupa100?: boolean;
+    onClick?: () => void;
 }
 
-export default function BotonVerde({children,ocupa100} : BotonVerdeProps
+export default function BotonVerde({ children, ocupa100, onClick }: BotonVerdeProps
 ) {
     return (
         <button
-        type="submit"
-        className={`btn btn-success ${ocupa100 ? 'w-100' : ''}`}
-        style={{ fontWeight: "500", color: "#000" }}>
+            type="submit"
+            className={`btn btn-success ${ocupa100 ? 'w-100' : ''}`}
+            style={{ fontWeight: "500", color: "#000" }}
+            onClick={onClick}>
             {children}
         </button>
     )
