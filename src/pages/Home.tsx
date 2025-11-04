@@ -77,7 +77,7 @@ export default function Home() {
     const fetchPosts = async () => {
       try {
         const data = await getPosts();
-        setPosts(data);
+        setPosts(data.reverse());
       } catch (err) {
         console.error(err);
         setError("Error al cargar las publicaciones.");
@@ -87,20 +87,6 @@ export default function Home() {
     };
     fetchPosts();
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const bottom =
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 200;
-
-      if (bottom && visibleCount < posts.length) {
-        setVisibleCount((prev) => prev + 3);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [posts, visibleCount]);
 
   if (loading)
     return (
@@ -128,7 +114,7 @@ export default function Home() {
       </div>
 
       <div className="mx-auto" style={{ maxWidth: "700px" }}>
-        {posts.slice(0, visibleCount).reverse().map((post) => (
+        {posts.slice(0, visibleCount).map((post) => (
           <CardPostHome key={post.id} post={post} />
         ))}
 

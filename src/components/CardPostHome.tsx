@@ -41,9 +41,11 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
           {post.createdAt && (
             <small className={style.date}>
               {new Date(post.createdAt).toLocaleDateString("es-ES", {
+                hour: "numeric",
+                minute:"numeric",
                 day: "numeric",
                 month: "short",
-                year: "numeric",
+                year: "numeric"
               })}
             </small>
           )}

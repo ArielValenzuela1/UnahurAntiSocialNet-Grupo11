@@ -33,9 +33,11 @@ export default function Perfil() {
             </div>
             <div>
               <p className="text-secondary">Miembro Desde</p>
-              <p>{`${new Date(usuario.createdAt).getFullYear()}-${String(
-                new Date(usuario.createdAt).getMonth() + 1
-              ).padStart(2, "0")}`}</p>
+              <p>{new Date(usuario.createdAt).toLocaleDateString("es-ES", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}</p>
             </div>
           </div>
         </div>

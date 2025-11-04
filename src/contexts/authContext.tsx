@@ -38,14 +38,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem("usuario");
+    const stored = localStorage.getItem("usuario");
     if (stored) {
       try {
         const user = JSON.parse(stored);
         setUsuario(user);
       } catch (err) {
         console.error("Usuario corrupto:", err);
-        sessionStorage.removeItem("usuario");
+        localStorage.removeItem("usuario");
       }
     }
     setCargando(false);
@@ -54,12 +54,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const login = (user: Usuario) => {
     const userConEstado = { ...user, logueado: true };
     setUsuario(userConEstado);
-    sessionStorage.setItem("usuario", JSON.stringify(userConEstado));
+    localStorage.setItem("usuario", JSON.stringify(userConEstado));
   };
 
   const logout = () => {
     setUsuario(null);
-    sessionStorage.removeItem("usuario");
+    localStorage.removeItem("usuario");
   };
 
   return (
@@ -75,4 +75,4 @@ export function useAuth() {
     throw new Error("useAuth debe usarse dentro de un AuthProvider");
   }
   return context;
-}
+};

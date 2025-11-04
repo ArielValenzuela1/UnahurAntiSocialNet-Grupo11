@@ -37,6 +37,7 @@ export default function CreatePost() {
 
     if (!description) {
       setError("Por favor ingresa una descripción");
+      setTimeout(() => setError(null), 3000);
       return;
     }
     const userId = usuario?.id;
@@ -58,9 +59,13 @@ export default function CreatePost() {
       })
       .then(() => {
         setMensaje(`Post creado con éxito.`);
+        setTimeout(() => setMensaje(null), 3000);
       })
       .catch(
-        (e: any) => setError(`${e.message} ${e.details}`)
+        (e: any) => {
+          setError(`${e.message} ${e.details}`)
+          setTimeout(() => setError(null), 3000);
+        }
       );
   };
 
@@ -111,7 +116,7 @@ export default function CreatePost() {
           )}
         </div>
 
-          <TagCard selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+        <TagCard selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
         {/*Div botones*/}
         <div className="d-flex gap-3">
