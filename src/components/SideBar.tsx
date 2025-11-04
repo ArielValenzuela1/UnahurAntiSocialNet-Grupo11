@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import style from "./SideBar.module.css";
+import style from "./Modules/SideBar.module.css";
 import { House, User, CirclePlus, Menu, X } from "lucide-react";
 import { useState } from "react"; 
 import { useAuth } from "../contexts/authContext";

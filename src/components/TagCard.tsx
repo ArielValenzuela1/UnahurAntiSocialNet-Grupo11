@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
-import style from "./TagCard.module.css"
+import style from "./Modules/TagCard.module.css"
 import type { Tag } from "../contexts/authContext";
 
 interface TagSelectorProps {

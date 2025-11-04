@@ -18,12 +18,12 @@ export default function CirculoLetra({
         minWidth: size,
         height: size,
         color: colorLetra,
-        borderRadius: "50%",          // Hace que sea circular
+        borderRadius: "50%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: size / 2,           // Ajusta tamaño de la letra
-        userSelect: "none",           // Evita seleccionar la letra
+        fontSize: size / 2,
+        userSelect: "none",
       }}
     >
       {letra.toUpperCase()}

@@ -9,8 +9,7 @@ export default function BotonVerde({ children, ocupa100, onClick }: BotonVerdePr
     return (
         <button
             type="submit"
-            className={`btn btn-success ${ocupa100 ? 'w-100' : ''}`}
-            style={{ fontWeight: "500", color: "#000" }}
+            className={`fw-medium text-dark btn btn-success ${ocupa100 ? 'w-100' : ''}`}
             onClick={onClick}>
             {children}
         </button>

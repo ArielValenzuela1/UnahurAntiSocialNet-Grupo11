@@ -1,9 +1,9 @@
 import FondoUnahur from "./FondoUnahur";
 import logoUnaHur from "../assets/img/logo-UnaHur.png";
-import style from "./LogoInicio.module.css";
+import style from "./Modules/LogoInicio.module.css";
 export default function LogoInicio() {
   return (
-    <div style={{ display: "inline-flex" }}>
+    <div className="d-inline-flex">
       <div className={`${style.divLogo}`}>
         <FondoUnahur>
           <img className={`${style.logo}`} src={logoUnaHur} />

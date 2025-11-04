@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Post } from "../pages/Home";
 import { Eye, MessageCircle } from "lucide-react";
-import style from "./CardPostHome.module.css";
+import style from "./Modules/CardPostHome.module.css";
+import CirculoLetra from "./CirculoLetra";
 
 interface CardPostHomeProps {
   post: Post;
@@ -19,59 +20,44 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
   }, [post.id]);
 
   const images = post.images ?? [];
-  const imageCount = images.length;
   const maxImagesToShow = 4;
+  const imageCount = images.length;
+  const visualImages = images.slice(0, maxImagesToShow)
+
 
   return (
     <div
-      className="card text-light border border-secondary mb-4 shadow-sm"
-      style={{ background: "rgb(15, 23, 43)" }}
+      className={`card text-light border border-secondary mb-4 shadow-sm ${style.contenedor}`}
     >
-      <div className="card-header bg-transparent border-0 d-flex align-items-center">
-        <Link
-          to={`/user/${post.UserId}`}
-          className="d-flex align-items-center text-decoration-none text-light"
-        >
-          <div
-            className="rounded-circle p-2 d-flex align-items-center justify-content-center me-2"
-            style={{
-              width: "45px",
-              height: "45px",
-              background:
-                "linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%)",
-              color: "#FFFFFF",
-              fontWeight: 500,
-              fontSize: "1.2rem",
-            }}
-          >
-            {post.User?.nickName.charAt(0).toUpperCase()}
-          </div>
-
-          <div>
-            <p className={style.nickName}>
-              {post.User?.nickName}
-            </p>
-            {post.createdAt && (
-              <small className={style.date}>
-                {new Date(post.createdAt).toLocaleDateString("es-ES", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </small>
-            )}
-          </div>
-        </Link>
-      </div>
+      <Link
+        to={`/user/${post.UserId}`}
+        className="card-header d-flex align-items-center text-decoration-none gap-3"
+      >
+        <CirculoLetra size={40} letra={post.User?.nickName[0]} />
+        <div>
+          <p className={style.nickName}>
+            {post.User?.nickName}
+          </p>
+          {post.createdAt && (
+            <small className={style.date}>
+              {new Date(post.createdAt).toLocaleDateString("es-ES", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </small>
+          )}
+        </div>
+      </Link>
 
       <div className="card-body pt-1">
-        <p className="mb-3" style={{ whiteSpace: "pre-wrap", color: "#E2E8E4" }}>
+        <p>
           {post.description}
         </p>
 
         {imageCount > 0 && (
           <div className={`mt-3 ${imageCount === 1 ? "" : "row g-1"}`}>
-            {images.slice(0, maxImagesToShow).map((image, index) => (
+            {visualImages.map((image, index) => (
               <div
                 key={image.id}
                 className={imageCount > 1 ? "col-6 position-relative" : ""}
@@ -79,20 +65,13 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                 <img
                   src={image.url}
                   alt={`Post ${index + 1}`}
-                  className="img-fluid rounded w-100"
-                  style={{ objectFit: "cover", maxHeight: "300px" }}
+                  className={`img-fluid rounded w-100 ${style.imagePost}`}
                 />
 
                 {index === maxImagesToShow - 1 && imageCount > maxImagesToShow && (
                   <Link
                     to={`/post/${post.id}`}
-                    className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-decoration-none"
-                    style={{
-                      backgroundColor: "rgba(0, 0, 0, 0.6)",
-                      borderRadius: "0.375rem",
-                      transition: "all 0.25s ease-in-out",
-                      transform: "scale(1)",
-                    }}
+                    className={style.linkOverlay}
                     onMouseDown={(e) => (e.currentTarget.style.transform = "scale(0.95)")}
                     onMouseUp={(e) => (e.currentTarget.style.transform = "scale(1)")}
                     onTouchStart={(e) => (e.currentTarget.style.transform = "scale(0.95)")}

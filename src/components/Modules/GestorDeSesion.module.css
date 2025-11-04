@@ -1,0 +1,14 @@
+.botonCerrarSesion {
+    color: red;
+    background-color: transparent;
+    border: none;   
+    cursor: pointer;
+    margin-left: 8px;
+}
+.botonIniciarSesion {
+  text-decoration: none;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: inherit;
+}
