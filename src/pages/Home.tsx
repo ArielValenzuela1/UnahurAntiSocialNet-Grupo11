@@ -15,9 +15,9 @@ import { CardPostHome } from "../components/CardPostHome";
 export interface Post {
   id: number;
   description: string;
-  userId: number;
+  UserId: number;
 
-  User?: {
+  User: {
     id: number;
     nickName: string;
     email: string;
@@ -56,7 +56,7 @@ export default function Home() {
       posts.map(async (post) => {
         try {
           const [userRes, imagesRes] = await Promise.all([
-            fetch(`${API_URL}/users/${post.userId}`),
+            fetch(`${API_URL}/posts/${post.UserId}`),
             fetch(`${API_URL}/postimages/post/${post.id}`),
           ]);
 

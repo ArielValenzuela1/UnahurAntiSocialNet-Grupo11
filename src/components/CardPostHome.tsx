@@ -28,7 +28,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
     >
       <div className="card-header bg-transparent border-0 d-flex align-items-center">
         <Link
-          to={`/user/${post.userId}`}
+          to={`/user/${post.UserId}`}
           className="d-flex align-items-center text-decoration-none text-light"
         >
           <div
