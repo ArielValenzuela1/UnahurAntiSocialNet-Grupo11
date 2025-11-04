@@ -1,6 +1,6 @@
 import BotonVerde from "../components/BotonVerde";
 import CirculoLetra from "../components/CirculoLetra";
-import style from "./Perfil.module.css";
+import style from "./Modules/Perfil.module.css";
 import { User } from "lucide-react";
 import { useAuth } from "../contexts/authContext";
 import { Link } from "react-router-dom";

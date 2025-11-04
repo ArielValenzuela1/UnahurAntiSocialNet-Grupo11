@@ -1,5 +1,5 @@
 import { UserPlus } from "lucide-react";
-import style from "./Register.module.css";
+import style from "./Modules/Register.module.css";
 import FondoUnahur from "../components/FondoUnahur";
 import { Link } from "react-router-dom";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 import { CircleFadingPlus, X, Image } from "lucide-react";
-import style from "./CreatePost.module.css";
+import style from "./Modules/CreatePost.module.css";
 import { useState } from "react";
 import BotonVerde from "../components/BotonVerde";
 import { useAuth } from "../contexts/authContext";
