@@ -25,12 +25,7 @@
     margin: 0;
     text-align: center;
 }
-.misPublicaciones{
-    margin: 15px;
-    padding: 20px;
-}
-
-.misPublicaciones div{
+.publicacionesNoEncontradas{
     display: flex;
     flex-direction: column;
     align-items: center;
