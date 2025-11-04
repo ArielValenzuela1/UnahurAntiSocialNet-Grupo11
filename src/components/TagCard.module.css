@@ -1,0 +1,56 @@
+.cardTag {
+    background-color: rgb(15, 23, 43) !important;
+    border: solid 1px rgb(49, 65, 88);
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 10px;
+}
+
+.tagBadge {
+    background-color: transparent;
+    color: #CAD5E2;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    border: 0.5px solid #45556C;
+}
+
+.tagBadge:hover {
+    background-color: #334155;
+    border-color: #198754;
+}
+
+.selected {
+    background-color: #198754;
+    color: #000;
+    border-color: #198754;
+}
+
+.inputBusqueda {
+    background-color: #151B29;
+    border: solid 1px #314158;
+    color: #ffffff;
+}
+
+.inputBusqueda:focus {
+    border-color: #6c757d !important;
+    background-color: #151B29;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+    color: #ffffff;
+}
+
+.inputBusqueda::placeholder {
+    color: rgb(161, 161, 161);
+    font-size: 0.9rem;
+}

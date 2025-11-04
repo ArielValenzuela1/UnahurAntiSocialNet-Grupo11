@@ -15,6 +15,11 @@ export interface Usuario {
   logueado: boolean;
 }
 
+export interface Tag {
+    id: number;
+    name: string;
+}
+
 interface AuthContextType {
   usuario: Usuario | null;
   cargando: boolean;

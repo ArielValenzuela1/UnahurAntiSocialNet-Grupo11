@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import type { Post } from "../pages/Home";
 import { Eye, MessageCircle } from "lucide-react";
+import style from "./CardPostHome.module.css";
 
 interface CardPostHomeProps {
   post: Post;
@@ -39,7 +40,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
               background:
                 "linear-gradient(155deg,rgba(87, 199, 133, 1) 1%, rgba(37, 142, 184, 1) 88%)",
               color: "#FFFFFF",
-              fontWeight: 700,
+              fontWeight: 500,
               fontSize: "1.2rem",
             }}
           >
@@ -47,11 +48,11 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
           </div>
 
           <div>
-            <h6 className="mb-1 text-info fw-semibold fs-4">
+            <p className={style.nickName}>
               {post.User?.nickName}
-            </h6>
+            </p>
             {post.createdAt && (
-              <small>
+              <small className={style.date}>
                 {new Date(post.createdAt).toLocaleDateString("es-ES", {
                   day: "numeric",
                   month: "short",
