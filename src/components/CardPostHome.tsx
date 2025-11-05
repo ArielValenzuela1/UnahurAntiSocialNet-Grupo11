@@ -20,7 +20,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
   }, [post.id]);
 
   const images = post.images ?? [];
-  const maxImagesToShow = 4;
+  const maxImagesToShow = 2;
   const imageCount = images.length;
   const visualImages = images.slice(0, maxImagesToShow)
 
@@ -64,12 +64,13 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                 key={image.id}
                 className={imageCount > 1 ? "col-6 position-relative" : ""}
               >
+                <div className={style.divImg}>
                 <img
                   src={image.url}
                   alt={`Post ${index + 1}`}
                   className={`img-fluid rounded w-100 ${style.imagePost}`}
                 />
-
+                </div>
                 {index === maxImagesToShow - 1 && imageCount > maxImagesToShow && (
                   <Link
                     to={`/post/${post.id}`}

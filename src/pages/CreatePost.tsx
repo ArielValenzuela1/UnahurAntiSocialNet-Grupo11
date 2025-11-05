@@ -57,10 +57,26 @@ export default function CreatePost() {
         }
         return res.json();
       })
-      .then(() => {
-        setMensaje(`Post creado con éxito.`);
-        setTimeout(() => setMensaje(null), 3000);
-      })
+      .then((postCreado) => {
+      const imagenesValidas = imagenes.filter((url) => url.trim() !== "");
+      if (imagenesValidas.length === 0) return postCreado;
+      // Crear cada imagen asociada al post creado
+      return Promise.all(
+        imagenesValidas.map((url) =>
+          fetch("http://localhost:3001/postImages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url, postId: postCreado.id }),
+        })))
+        .then(() => postCreado);
+    })
+    .then(() => {
+      setMensaje("Post creado con éxito.");
+      setDescripcion("");
+      setImagenes([""]);
+      setSelectedTags([]);
+      setTimeout(() => setMensaje(null), 3000);
+    })
       .catch(
         (e: any) => {
           setError(`${e.message} ${e.details}`)
@@ -82,6 +98,7 @@ export default function CreatePost() {
             id="description"
             className={`form-control text-light border-secondary ${style.formControl}`}
             placeholder="¿Qué quieres compartir?"
+            value={description}
             rows={4}
             onChange={(e) => setDescripcion(e.target.value)} />
 
