@@ -18,3 +18,12 @@
     color: #00D492 !important;
     margin-left: 15px !important;
 }
+
+@media (max-width: 560px){
+    .contenedorLogo p{
+        display: none;
+    }
+    .contenedorLogo{
+        margin-left: -50px;
+    }
+}

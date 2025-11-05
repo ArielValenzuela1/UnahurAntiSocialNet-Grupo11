@@ -14,7 +14,7 @@ export default function BotonSesion() {
   };
 
   return (
-    <>
+    <div className={style.gestor}>
       {usuario && usuario.logueado ? (
         <div className="d-flex align-items-center">
           <Link to="/perfil">
@@ -33,6 +33,6 @@ export default function BotonSesion() {
           <p>Iniciar Sesión</p>
         </Link>
       )}
-    </>
+    </div>
   );
 }
