@@ -1,0 +1,101 @@
+.postContainer {
+  max-width: 700px;
+  padding-top: 1.5rem;
+}
+
+.postCard {
+  background: var(--color-contenedor);
+  border: var(--borde);
+  border-radius: 8px;
+  color: var(--color-texto);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.postCard .card-header {
+  padding: 0 0 1rem 0; 
+  margin-bottom: 1rem; 
+  border-bottom: 1px solid var(--borde); 
+}
+
+.nickName {
+  color: var(--color-verde);
+  font-weight: 450;
+  margin-bottom: -5px;
+  font-size: 1.2rem;
+}
+
+.date {
+  color: #53647d;
+  font-size: 0.9rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tagBadge {
+  background-color: rgba(4, 47, 46, 0.5);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.carousel {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.carouselImage {
+  max-height: 500px;
+  object-fit: contain; 
+  width: 100%;
+}
+
+.postCard .card-body {
+  padding: 0;
+}
+
+.commentInput {
+  background-color: #151B29 !important;
+  border-color: #314158 !important;
+  color: #ffffff !important;
+}
+
+.commentInput:focus {
+  border-color: #6c757d !important;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
+  background-color: #151B29 !important;
+}
+
+.commentInput::placeholder {
+  color: rgb(161, 161, 161);
+}
+
+.commentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment {
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 0.75rem;
+}
+
+.commentUser {
+  font-weight: 500;
+  color: var(--color-verde);
+  margin-bottom: 0.25rem;
+}
+
+.commentContent {
+  margin-bottom: 0;
+  color: #e2e8f0;
+}

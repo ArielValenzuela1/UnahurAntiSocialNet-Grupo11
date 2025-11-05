@@ -30,7 +30,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/crear-post" element={<CreatePost />} />
             <Route path="/perfil" element={<Perfil />} />
-            <Route path="/post" element={<Post />} />
+            <Route path="/post/:postId" element={<Post />} />
           </Route>
         </Routes>
       </main>
