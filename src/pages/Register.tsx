@@ -1,7 +1,7 @@
 import { UserPlus } from "lucide-react";
 import style from "./Modules/Register.module.css";
 import FondoUnahur from "../components/FondoUnahur";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import BotonVerde from "../components/BotonVerde";
 
@@ -12,6 +12,7 @@ type Usuario = {
 };
 
 export default function Register() {
+  const navigate = useNavigate();
   const [nickName, setNickName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mensaje, setMensaje] = useState<string | null>(null);
@@ -69,6 +70,9 @@ export default function Register() {
         setMensaje(`Usuario ${usuarioCreado.nickName} creado con éxito.`);
         setNickName("");
         setEmail("");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((e: any) => setError(`${e.message}`));

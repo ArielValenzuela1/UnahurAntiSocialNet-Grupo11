@@ -86,7 +86,7 @@ export default function Perfil() {
           <div className={style.statsContainer}>
             <div>
               <p className="text-secondary">Publicaciones</p>
-              <p>0</p>
+              <p>{posts.length}</p>
             </div>
             <div>
               <p className="text-secondary">Seguidores</p>
