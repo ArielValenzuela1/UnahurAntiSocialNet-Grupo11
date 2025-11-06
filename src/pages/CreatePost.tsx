@@ -8,6 +8,12 @@ import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 
+interface Post {
+  description: string;
+  userId: string;
+  tagIds: number[];
+}
+
 export default function CreatePost() {
   const navigate = useNavigate();
   const { usuario } = useAuth();
@@ -34,6 +40,56 @@ export default function CreatePost() {
     setImagenes((prev) => [...prev, ""]);
   };
 
+  // Función para crear el post
+  async function crearPost(nuevoPost: Post) {
+    const res = await fetch("http://localhost:3001/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nuevoPost),
+    });
+    console.log(JSON.stringify(nuevoPost));
+
+    if (!res.ok) throw new Error("No se pudo crear la publicación");
+
+    return res.json();
+  }
+
+  // Función para crear las imágenes asociadas al post
+  async function crearImagenes(postId: number, imagenes: string[]) {
+    const imagenesValidas = imagenes.filter((url) => url.trim() !== "");
+
+    if (imagenesValidas.length === 0) return;
+
+    const requests = imagenesValidas.map((url) =>
+      fetch("http://localhost:3001/postImages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, postId }),
+      })
+    );
+
+    await Promise.all(requests);
+  }
+
+  // Función principal
+  async function manejarCreacionPost(nuevoPost: Post) {
+    try {
+      const postCreado = await crearPost(nuevoPost);
+      await crearImagenes(postCreado.id, imagenes);
+
+      setMensaje("Post creado con éxito.");
+      setDescripcion("");
+      setImagenes([""]);
+      setSelectedTags([]);
+
+      setTimeout(() => setMensaje(null), 3000);
+      setTimeout(() => navigate(`/post/${postCreado.id}`), 1000);
+    } catch (e: any) {
+      setError(`${e.message} ${e.details || ""}`);
+      setTimeout(() => setError(null), 3000);
+    }
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     console.log('Handle Submit');
     e.preventDefault();
@@ -44,50 +100,22 @@ export default function CreatePost() {
       setTimeout(() => setError(null), 3000);
       return;
     }
-    const userId = usuario?.id;
 
-    const nuevoPost = { description, userId, tagIds: selectedTags };
+    //esto no deberia pasar
+    if(!usuario) {
+      setError("Usuario no autenticado");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+    const userId = usuario.id;
 
-    fetch("http://localhost:3001/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(nuevoPost),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("No se pudo crear la publicación");
-        }
-        return res.json();
-      })
-      .then((postCreado) => {
-        const imagenesValidas = imagenes.filter((url) => url.trim() !== "");
-        if (imagenesValidas.length === 0) return postCreado;
-        // Crear cada imagen asociada al post creado
-        return Promise.all(
-          imagenesValidas.map((url) =>
-            fetch("http://localhost:3001/postImages", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ url, postId: postCreado.id }),
-            })))
-          .then(() => postCreado);
-      })
-      .then((postCreado) => {
-        setMensaje("Post creado con éxito.");
-        setDescripcion("");
-        setImagenes([""]);
-        setSelectedTags([]);
-        setTimeout(() => setMensaje(null), 2000);
-        setTimeout(() => navigate(`/post/${postCreado.id}`), 1000);
-      })
-      .catch(
-        (e: any) => {
-          setError(`${e.message} ${e.details}`)
-          setTimeout(() => setError(null), 3000);
-        }
-      );
+    const nuevoPost: Post = {
+      description,
+      userId: userId,
+      tagIds: selectedTags,
+    };
+
+    manejarCreacionPost(nuevoPost)
   };
 
   return (
