@@ -52,7 +52,7 @@ export default function Home() {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 650); 
+        }, 300); 
       }
     };
     fetchPosts();

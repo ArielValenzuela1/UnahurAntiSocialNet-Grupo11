@@ -18,10 +18,15 @@ export default function Register() {
   const [mensaje, setMensaje] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const [errorNickName, setErrorNickName] = useState<boolean>(false)
+  const [errorMail, setErrorMail] = useState<boolean>(false)
+
   const handleInvalid = (e: React.InvalidEvent<HTMLInputElement>) => {
     e.preventDefault();
     console.log(e.target.validationMessage);
     setError(e.target.validationMessage);
+    setErrorMail(true);
+    setTimeout(() => setErrorMail(false), 3000);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,14 +35,22 @@ export default function Register() {
     setMensaje(null);
 
     if (!nickName && !email) {
+      setErrorNickName(true);
+      setErrorMail(true);
+      setTimeout(() => setErrorNickName(false), 3000);
+      setTimeout(() => setErrorMail(false), 3000);
       setError("Por favor ingresa un nickname y un email");
       return;
     }
     if (!nickName) {
+      setErrorNickName(true);
+      setTimeout(() => setErrorNickName(false), 3000);
       setError("Por favor ingresa un nickname");
       return;
     }
     if (!email) {
+      setErrorMail(true);
+      setTimeout(() => setErrorMail(false), 3000);
       setError("Por favor ingresa un email");
       return;
     }
@@ -59,6 +72,10 @@ export default function Register() {
               throw new Error(err.message || "No se pudo crear el usuario");
             })
             .catch(() => {
+              setErrorNickName(true);
+              setErrorMail(true);
+              setTimeout(() => setErrorNickName(false), 3000);
+              setTimeout(() => setErrorMail(false), 3000);
               throw new Error(
                 "No se pudo crear el usuario. Nickname o email quizás ya existen."
               );
@@ -110,7 +127,7 @@ export default function Register() {
               <input
                 type="text"
                 id="nickname"
-                className={`form-control text-light border-secondary ${style.inputColor}`}
+                className={`form-control text-light border-secondary ${style.inputColor} ${errorNickName ? style.inputError : ""}`}
                 placeholder="tu_nickname_unico"
                 value={nickName}
                 onChange={(e) => setNickName(e.target.value)}
@@ -122,7 +139,7 @@ export default function Register() {
               <input
                 type="email"
                 id="email"
-                className={`form-control text-light border-secondary ${style.inputColor}`}
+                className={`form-control text-light border-secondary ${style.inputColor} ${errorMail ? style.inputError : ""}`}
                 placeholder="tu_email@gmail.com"
                 value={email}
                 onInvalid={handleInvalid}
@@ -139,7 +156,7 @@ export default function Register() {
             {error && (
               <div className="alert alert-danger text-center mt-3">{error}</div>
             )}
-            
+
             <BotonVerde ocupa100>
               Registrarse
             </BotonVerde>

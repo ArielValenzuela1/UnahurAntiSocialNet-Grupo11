@@ -20,6 +20,10 @@
   box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); 
 }
 
+.formControlError{
+    border-color: #FF6467 !important;
+}
+
 .formControl{
     background-color: #151B29 !important;
     border-color: #314158;

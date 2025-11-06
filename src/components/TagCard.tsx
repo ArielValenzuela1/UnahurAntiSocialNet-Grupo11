@@ -25,26 +25,6 @@ export default function TagSelector({ selectedTags, setSelectedTags }: TagSelect
         });
     };
 
-    const handleCreateTag = async () => {
-        const nombre = newTag.trim();
-        if (!nombre) return;
-
-        try {
-            const res = await fetch("http://localhost:3001/tags", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nombre }),
-            });
-            const nueva = await res.json();
-            setTags([...tags, nueva]);
-            setSelectedTags([...selectedTags, nueva.id]); // selecciona automáticamente  
-            setNewTag("");
-        } catch (err) {
-            console.error("Error al crear etiqueta:", err);
-        }
-
-    };
-
     return (
         <div className={`card mb-3 card-body ${style.cardTag}`}>
            <p> Etiquetas </p>
@@ -83,15 +63,13 @@ export default function TagSelector({ selectedTags, setSelectedTags }: TagSelect
                     className={`form-control text-light border-secondary ${style.inputBusqueda}`}
                     placeholder="nombre_etiqueta"
                     value={newTag}
-                    onChange={(e) => setNewTag(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleCreateTag()}
-                />
+                    onChange={(e) => setNewTag(e.target.value)}/>
                 <button
                     className="btn btn-success d-flex align-items-center gap-1"
                     type="button"
-                    onClick={handleCreateTag}
                     disabled={!newTag.trim()}
-                >
+                    onClick={() => setNewTag("")}>
+                    {/*Proximamente funcionalidad de crear tag*/}
                     <Plus size={16} /> Crear
                 </button>
             </div>

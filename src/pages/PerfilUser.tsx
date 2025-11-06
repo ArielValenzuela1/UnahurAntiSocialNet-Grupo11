@@ -67,7 +67,7 @@ export default function Perfil() {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 650);
+        }, 300);
       }
     };
     fetchData();

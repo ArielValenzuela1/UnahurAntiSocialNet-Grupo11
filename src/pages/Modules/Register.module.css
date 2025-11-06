@@ -13,6 +13,9 @@
     color: #C1E8F0 !important;
 }
 
+.inputError{
+    border-color: #FF6467 !important;
+}
 
 .inputColor:focus {
     background: rgb(21, 27, 41);

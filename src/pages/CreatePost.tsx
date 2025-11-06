@@ -18,6 +18,7 @@ export default function CreatePost() {
   const navigate = useNavigate();
   const { usuario } = useAuth();
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
+  const [noDescripcion, setNoDescripcion] = useState<boolean>(false)
 
   const [imagenes, setImagenes] = useState([""]);
   const [description, setDescripcion] = useState<string>("");
@@ -97,7 +98,9 @@ export default function CreatePost() {
 
     if (!description) {
       setError("Por favor ingresa una descripción");
+      setNoDescripcion(true);
       setTimeout(() => setError(null), 3000);
+      setTimeout(() => setNoDescripcion(false), 3000);
       return;
     }
 
@@ -148,7 +151,7 @@ export default function CreatePost() {
             <label htmlFor="description" className="form-label">Descripción *</label>
             <textarea
               id="description"
-              className={`form-control text-light border-secondary ${style.formControl}`}
+              className={`form-control text-light border-secondary ${style.formControl} ${noDescripcion ? style.formControlError : ""}`}
               placeholder="¿Qué quieres compartir?"
               value={description}
               rows={4}
@@ -214,13 +217,10 @@ export default function CreatePost() {
 
           {/*Div botones*/}
           <div className="d-flex gap-3">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}>
               <BotonVerde>
                 <CircleFadingPlus /> Publicar
               </BotonVerde>
-            </motion.div>
+            
 
             <NavLink to="/">
               <motion.div

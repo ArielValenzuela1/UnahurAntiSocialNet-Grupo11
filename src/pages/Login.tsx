@@ -19,6 +19,8 @@ export default function Login() {
   const [nickName, setNickName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  const [errorNickName, setErrorNickName] = useState<boolean>(false)
+  const [errorPasword, setErrorPasword] = useState<boolean>(false)
 
   const navigate = useNavigate();
   const passwordFija = "123456";
@@ -28,17 +30,27 @@ export default function Login() {
     setError(null);
 
     if (!nickName && !password) {
-      setError("Por favor, completa tu Usuario y Contraseña");
+      setError("Por favor, completa su nickName y Contraseña");
+      setErrorNickName(true);
+      setErrorPasword(true);
+      setTimeout(() => setErrorNickName(false), 3000);
+      setTimeout(() => setErrorPasword(false), 3000);
       return;
     } else if (!nickName) {
+      setErrorNickName(true);
       setError("Por favor ingresa un nickname");
+      setTimeout(() => setErrorNickName(false), 3000);
       return;
     } else if (!password) {
+      setErrorPasword(true);
+      setTimeout(() => setErrorPasword(false), 3000);
       setError("Por favor ingresa una contraseña");
       return;
     }
 
     if (password !== passwordFija) {
+      setErrorPasword(true);
+      setTimeout(() => setErrorPasword(false), 3000);
       setError("Contraseña incorrecta");
       setPassword("");
       return;
@@ -105,7 +117,7 @@ export default function Login() {
             <input
               type="text"
               id="nickname"
-              className={`form-control text-light border-secondary ${style.inputColor}`}
+              className={`form-control text-light border-secondary ${style.inputColor} ${errorNickName ? style.inputError : ""}`}
               placeholder="tu_nickname"
               value={nickName}
               onChange={(e) => setNickName(e.target.value)}
@@ -119,7 +131,7 @@ export default function Login() {
             <input
               type="password"
               id="password"
-              className={`form-control text-light border-secondary ${style.inputColor}`}
+              className={`form-control text-light border-secondary ${style.inputColor} ${errorPasword ? style.inputError : ""}`}
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
