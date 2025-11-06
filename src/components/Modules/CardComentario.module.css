@@ -1,0 +1,19 @@
+.postCard {
+  background: var(--color-contenedor);
+  border: var(--borde);
+  border-radius: 8px;
+  color: var(--color-texto);
+  margin-bottom: 0.2rem;
+  padding: 1rem;
+}
+
+.nickName {
+  color: #00D492;
+  font-weight: 450;
+  margin-bottom: -5px;
+  font-size: 1.2rem;
+}
+
+.date {
+  color: #53647D;
+}

@@ -7,13 +7,15 @@ import CirculoLetra from "../components/CirculoLetra";
 import BotonVerde from "../components/BotonVerde";
 import { Send } from "lucide-react";
 import { Carousel } from "react-bootstrap";
+import CardComentario from "../components/CardComentario";
 
 
 interface Comment {
   id: number;
-  contenido: string;
-  createdAt: string;
+  content: string;
+  createdAt: Date;
   User: {
+    id: number;
     nickName: string;
   };
 }
@@ -74,7 +76,7 @@ export default function Post() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contenido: newComment,
+          content: newComment,
           userId: usuario.id,
           postId: post.id,
         }),
@@ -158,6 +160,8 @@ export default function Post() {
         <div className={`card-body ${style.cardBody}`}>
           <h5 className="mb-3">Comentarios ({comments.length})</h5>
 
+          {comments.length == 0 ? <p className="text-secondary">Sé el primero en comentar!!!</p> : <p/>}
+
           {usuario && (
             <form onSubmit={handleCommentSubmit} className="d-flex gap-2 mb-4">
               <input
@@ -172,20 +176,15 @@ export default function Post() {
               </BotonVerde>
             </form>
           )}
-
-          <div className={style.commentsList}>
-            {comments.length > 0 ? (
-              comments.map((comment) => (
-                <div key={comment.id} className={style.comment}>
-                  <p className={style.commentUser}>{comment.User?.nickName}</p>
-                  <p className={style.commentContent}>{comment.contenido}</p>
-                </div>
-              ))
-            ) : (
-              <p className="text-secondary">Sé el primero en comentar.</p>
-            )}
-          </div>
         </div>
+      </div>
+      <div className={style.commentsList}>
+        {comments.length > 0 ? (
+          comments.map((comment) => 
+          <CardComentario key={comment.id} content={comment.content} createdAt={comment.createdAt} User={comment.User} />)
+        ) : (
+          <p/>
+        )}
       </div>
     </div>
   );
