@@ -4,6 +4,7 @@ import FondoUnahur from "../components/FondoUnahur";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import BotonVerde from "../components/BotonVerde";
+import { motion } from "framer-motion";
 
 type Usuario = {
   id: number;
@@ -97,9 +98,10 @@ export default function Register() {
 
   return (
     <>
-      <div
-        className={`d-flex align-items-center justify-content-center vh-100 text-light flex-column`}
-      >
+      <motion.div className={`d-flex align-items-center justify-content-center vh-100 text-light flex-column`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}>
         <div className="text-center mb-4">
           <FondoUnahur>
             <UserPlus />
@@ -112,8 +114,7 @@ export default function Register() {
 
         <div
           className={`card p-4 ${style.cardForm}`}
-          style={{ width: "100%", maxWidth: "450px" }}
-        >
+          style={{ width: "100%", maxWidth: "450px" }}>
           <p className="card-title">Registrarse</p>
           <p className={`card-subtitle mb-2 ${style.subtituloCard}`}>
             Elige un nickname único y original para tu cuenta
@@ -171,7 +172,7 @@ export default function Register() {
             </small>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -2,10 +2,11 @@ import { LogIn } from "lucide-react";
 import style from "./Modules/Login.module.css";
 import FondoUnahur from "../components/FondoUnahur";
 import { useState } from "react";
-import { useAuth} from "../contexts/authContext"; 
+import { useAuth } from "../contexts/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import BotonVerde from "../components/BotonVerde";
 import type { Usuario } from "../contexts/interfaces";
+import { motion } from "framer-motion";
 
 type UsuarioDeLaAPI = {
   id: number;
@@ -68,6 +69,8 @@ export default function Login() {
       );
 
       if (!usuarioEncontrado) {
+        setErrorNickName(true);
+        setTimeout(() => setErrorNickName(false), 3000);
         setError(`El usuario "${nickName}" no existe.`);
         return;
       }
@@ -89,7 +92,11 @@ export default function Login() {
   }
 
   return (
-    <div className="d-flex align-items-center justify-content-center vh-100 text-light flex-column">
+    <motion.div className="d-flex align-items-center justify-content-center vh-100 text-light flex-column"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}>
+
       <div className="text-center mb-4">
         <FondoUnahur>
           <LogIn />
@@ -157,6 +164,6 @@ export default function Login() {
           </small>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
