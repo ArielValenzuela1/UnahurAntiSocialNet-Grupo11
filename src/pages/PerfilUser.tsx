@@ -65,7 +65,9 @@ export default function Perfil() {
         console.error(err);
         setError("Error al cargar la información.");
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 650);
       }
     };
     fetchData();
@@ -75,7 +77,7 @@ export default function Perfil() {
     return (
       <div className="text-center mt-5 text-light">
         <div className="spinner-border text-info" role="status"></div>
-        <p className="mt-2">Cargando publicaciones...</p>
+        <p className="mt-2">Cargando perfil de {usuario?.nickName}...</p>
       </div>
     );
 

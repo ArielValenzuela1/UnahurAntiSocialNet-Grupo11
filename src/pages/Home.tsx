@@ -69,7 +69,9 @@ export default function Home() {
         console.error(err);
         setError("Error al cargar las publicaciones.");
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 650); 
       }
     };
     fetchPosts();
@@ -98,7 +100,7 @@ export default function Home() {
           setVisibleCount((prev) => prev + 3);
           setIsWaiting(false);
           waitingRef.current = false;
-        }, 2000);
+        }, 1250);
       }
     };
 
@@ -119,7 +121,7 @@ export default function Home() {
     return (
       <div className="text-center mt-5 text-light">
         <div className="spinner-border text-info" role="status"></div>
-        <p className="mt-2">Cargando publicaciones...</p>
+        <p className="mt-2">Cargando Inicio...</p>
       </div>
     );
 
