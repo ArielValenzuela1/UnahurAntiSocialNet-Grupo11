@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import style from "./Modules/SideBar.module.css";
 import { House, User, CirclePlus, Menu, X } from "lucide-react";
-import { useState } from "react"; 
+import { useState } from "react";
 import { useAuth } from "../contexts/authContext";
+import { motion } from "framer-motion";
 
 export default function SideBar() {
   const { usuario } = useAuth();
 
-  const logueado = !!usuario; 
+  const logueado = !!usuario;
 
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -15,7 +16,7 @@ export default function SideBar() {
     setMenuAbierto(!menuAbierto);
   };
 
-   const handleInicioClick = () => {
+  const handleInicioClick = () => {
     if (location.pathname === "/") {
       window.location.reload();
     } else {
@@ -31,37 +32,48 @@ export default function SideBar() {
 
       <div className={style.NavLinksContainer}>
         <p>Navegación</p>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `${style.NavLink} ${isActive ? style.activo : ""}`
-          }
-          onClick={handleInicioClick}
-        >
-          <House /> Inicio
-        </NavLink>
+        <motion.div
+          whileHover={{ x: 5 }}
+          whileTap={{ scale: 0.98 }}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => `${style.NavLink} ${isActive ? style.activo : ""}`}
+            onClick={handleInicioClick}>
+            <House /> Inicio
+          </NavLink>
+        </motion.div>
 
         {logueado && (
           <>
-            <NavLink
-              to="/perfil"
-              className={({ isActive }) =>
-                `${style.NavLink} ${isActive ? style.activo : ""}`
-              }
-              onClick={toggleMenu}
-            >
-              <User /> Perfil
-            </NavLink>
+            <motion.div
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}>
+              <NavLink
+                to="/perfil"
+                className={({ isActive }) =>
+                  `${style.NavLink} ${isActive ? style.activo : ""}`
+                }
+                onClick={toggleMenu}
+              >
+                <User /> Perfil
+              </NavLink>
+            </motion.div>
 
-            <NavLink
-              to="/crear-post"
-              className={({ isActive }) =>
-                `${style.NavLink} ${isActive ? style.activo : ""}`
-              }
-              onClick={toggleMenu}
-            >
-              <CirclePlus /> Crear Post
-            </NavLink>
+            <motion.div
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}>
+              <NavLink
+                to="/crear-post"
+                className={({ isActive }) =>
+                  `${style.NavLink} ${isActive ? style.activo : ""}`
+                }
+                onClick={toggleMenu}
+              >
+                <CirclePlus /> Crear Post
+              </NavLink>
+
+            </motion.div>
+
           </>
         )}
       </div>

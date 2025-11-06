@@ -4,8 +4,12 @@ import { useState } from "react";
 import BotonVerde from "../components/BotonVerde";
 import { useAuth } from "../contexts/authContext";
 import TagCard from "../components/TagCard";
+import { NavLink } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
+  const navigate = useNavigate();
   const { usuario } = useAuth();
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
 
@@ -58,25 +62,26 @@ export default function CreatePost() {
         return res.json();
       })
       .then((postCreado) => {
-      const imagenesValidas = imagenes.filter((url) => url.trim() !== "");
-      if (imagenesValidas.length === 0) return postCreado;
-      // Crear cada imagen asociada al post creado
-      return Promise.all(
-        imagenesValidas.map((url) =>
-          fetch("http://localhost:3001/postImages", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url, postId: postCreado.id }),
-        })))
-        .then(() => postCreado);
-    })
-    .then(() => {
-      setMensaje("Post creado con éxito.");
-      setDescripcion("");
-      setImagenes([""]);
-      setSelectedTags([]);
-      setTimeout(() => setMensaje(null), 3000);
-    })
+        const imagenesValidas = imagenes.filter((url) => url.trim() !== "");
+        if (imagenesValidas.length === 0) return postCreado;
+        // Crear cada imagen asociada al post creado
+        return Promise.all(
+          imagenesValidas.map((url) =>
+            fetch("http://localhost:3001/postImages", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ url, postId: postCreado.id }),
+            })))
+          .then(() => postCreado);
+      })
+      .then((postCreado) => {
+        setMensaje("Post creado con éxito.");
+        setDescripcion("");
+        setImagenes([""]);
+        setSelectedTags([]);
+        setTimeout(() => setMensaje(null), 2000);
+        setTimeout(() => navigate(`/post/${postCreado.id}`), 1000);
+      })
       .catch(
         (e: any) => {
           setError(`${e.message} ${e.details}`)
@@ -88,25 +93,56 @@ export default function CreatePost() {
   return (
     <div className={`${style.crearPost} mx-auto`}>
       <form onSubmit={handleSubmit} className={`text-light`}>
-        <h3 className={style.tituloCrearPost}>Crear Nueva Publicación</h3>
-        <p className="text-secondary">Comparte tu contenido con la comunidad</p>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}>
 
-        <div className={`card mb-3 card-body ${style.cardPost}`}>
+          <h3 className={style.tituloCrearPost}>Crear Nueva Publicación</h3>
+          <p style={{ color: "#90A1B9" }}>Comparte tu contenido con la comunidad</p>
+
+        </motion.div>
+
+
+        <motion.div
+          className={`card mb-3 card-body ${style.cardPost}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}>
+
           <p>Contenido del Post</p>
-          <label htmlFor="description" className="form-label">Descripción *</label>
-          <textarea
-            id="description"
-            className={`form-control text-light border-secondary ${style.formControl}`}
-            placeholder="¿Qué quieres compartir?"
-            value={description}
-            rows={4}
-            onChange={(e) => setDescripcion(e.target.value)} />
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}>
+
+            <label htmlFor="description" className="form-label">Descripción *</label>
+            <textarea
+              id="description"
+              className={`form-control text-light border-secondary ${style.formControl}`}
+              placeholder="¿Qué quieres compartir?"
+              value={description}
+              rows={4}
+              onChange={(e) => setDescripcion(e.target.value)} />
+
+          </motion.div>
 
           {/*Crear imagenes */}
-          <div className={`${style.divSeccionImagen}`}>
+          <motion.div
+            className={`${style.divSeccionImagen}`}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}>
+
             <label className="form-label">Imágenes (opcional)</label>
             {imagenes.map((url, index) => (
-              <div key={index} className={`input-group ${style.divCrearImagen}`}>
+              <motion.div
+                key={index}
+                className={`input-group ${style.divCrearImagen}`}
+                initial={{ opacity: 0, x: -20, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ duration: 0.2 }}>
 
                 <input type="text"
                   className={`form-control border-secondary ${style.inputUrlImagen}`}
@@ -119,28 +155,34 @@ export default function CreatePost() {
                   type="button"
                   id="button-addon2"
                   onClick={() => eliminarImagen(index)}> <X /> </button>
-              </div>
+              </motion.div>
             ))}
             <button type="button"
               className={`btn btn-secondary ${style.botonAgregarImagen} ${imagenes.length < 10 ? "" : "disabled"}`}
               onClick={agregarImagen}> <Image /> Agregar otra imagen</button>
-              {imagenes.length >= 10 ? (
+            {imagenes.length >= 10 ? (
               <p className="text-warning mt-2">
                 Has alcanzado el máximo de 10 imágenes por publicación.
-              </p> ):
-              (<p/>)
+              </p>) :
+              (<p />)
             }
-          </div>
-        
+
+          </motion.div>
+
           {mensaje && (
             <div className="alert alert-success text-center mt-3">{mensaje}</div>
           )}
           {error && (
             <div className="alert alert-danger text-center mt-3">{error}</div>
           )}
-        </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}>
 
-        <TagCard selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+          <TagCard selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+
 
         {/*Div botones*/}
         <div className="d-flex gap-3">
@@ -148,11 +190,15 @@ export default function CreatePost() {
             <CircleFadingPlus /> Publicar
           </BotonVerde>
 
-          <button type="button" className="btn btn-secondary">
-            Cancelar
-          </button>
+          <NavLink to="/">
+            <button type="button" className="btn btn-secondary">
+              Cancelar
+            </button>
+          </NavLink>
+
         </div>
 
+        </motion.div>
       </form>
     </div>
   );

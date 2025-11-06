@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import style from "./Modules/TagCard.module.css"
 import type { Tag } from "../contexts/authContext";
+import { motion } from "framer-motion";
 
 interface TagSelectorProps {
   selectedTags: number[];
@@ -51,10 +52,19 @@ export default function TagSelector({ selectedTags, setSelectedTags }: TagSelect
 
     return (
         <div className={`card mb-3 card-body ${style.cardTag}`}>
-            Etiquetas existentes
+           <p> Etiquetas </p>
 
             <div className={style.tagsContainer}>
                 {tags.map((tag) => (
+                    <motion.div
+                          key={tag.id}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.6 + tag.id * 0.05 }}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={style.divTag}
+                        >
                     <span
                         key={tag.id}
                         onClick={() => {
@@ -65,6 +75,7 @@ export default function TagSelector({ selectedTags, setSelectedTags }: TagSelect
                     >
                         #{tag.name}
                     </span>
+                    </motion.div>
                 ))}
             </div>
 
