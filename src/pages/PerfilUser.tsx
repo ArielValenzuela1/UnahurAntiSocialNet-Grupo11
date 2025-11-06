@@ -1,13 +1,12 @@
-import BotonVerde from "../components/BotonVerde";
+
 import CirculoLetra from "../components/CirculoLetra";
 import style from "./Modules/Perfil.module.css";
 import { User } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { Post } from "./Home";
 import { CardPostHome } from "../components/CardPostHome";
-import type { Usuario } from "../contexts/authContext";
 import { motion } from "framer-motion";
+import type { Post, Usuario } from "../contexts/interfaces";
 
 
 export default function Perfil() {

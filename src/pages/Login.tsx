@@ -3,9 +3,9 @@ import style from "./Modules/Login.module.css";
 import FondoUnahur from "../components/FondoUnahur";
 import { useState } from "react";
 import { useAuth} from "../contexts/authContext"; 
-import type {Usuario} from "../contexts/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import BotonVerde from "../components/BotonVerde";
+import type { Usuario } from "../contexts/interfaces";
 
 type UsuarioDeLaAPI = {
   id: number;

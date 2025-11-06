@@ -5,9 +5,9 @@ import { User } from "lucide-react";
 import { useAuth } from "../contexts/authContext";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import type { Post } from "./Home";
 import { CardPostHome } from "../components/CardPostHome";
 import { motion } from "framer-motion";
+import type { Post } from "../contexts/interfaces";
 
 export default function Perfil() {
   const { usuario } = useAuth();
