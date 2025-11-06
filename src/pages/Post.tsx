@@ -8,6 +8,7 @@ import BotonVerde from "../components/BotonVerde";
 import { Send } from "lucide-react";
 import { Carousel } from "react-bootstrap";
 import CardComentario from "../components/CardComentario";
+import ImageWithFallback from "../components/ImageWithFallback";
 
 
 interface Comment {
@@ -135,11 +136,9 @@ export default function Post() {
             <Carousel interval={null} className={style.carousel}>
               {post.images.map((image) => (
                 <Carousel.Item key={image.id}>
-                  <img
-                    className={`d-block w-100 ${style.carouselImage}`}
+                  <ImageWithFallback clasStyle={`d-block w-100 ${style.carouselImage}`}
                     src={image.url}
-                    alt="Imagen del post"
-                  />
+                    alt="Imagen del post"/>
                 </Carousel.Item>
               ))}
             </Carousel>

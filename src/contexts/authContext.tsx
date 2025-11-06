@@ -12,7 +12,7 @@ export interface Usuario {
   nickName: string;
   email: string;
   createdAt: string;
-  logueado: boolean;
+  logueado?: boolean;
 }
 
 export interface Tag {

@@ -22,6 +22,8 @@ export default function BotonSesion() {
           </Link>
           <button className={style.botonCerrarSesion} onClick={CerrarSesion}>
             <LogIn />
+            {' '}
+            Salir
           </button>
         </div>
       ) : (

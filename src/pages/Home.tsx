@@ -134,7 +134,7 @@ export default function Home() {
     <div className="container py-5">
       <div className="text-center mb-5">
         <h1 className="fw-bold text-light mb-3">UnaHur Anti-Social Net</h1>
-        <p className="text-secondary fs-5">
+        <p className="fs-5" style={{color: " #53647D"}}>
           Explorá publicaciones de la comunidad universitaria
         </p>
         <button

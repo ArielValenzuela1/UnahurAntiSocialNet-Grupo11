@@ -11,6 +11,7 @@ import SideBar from './components/SideBar';
 import { AuthProvider } from './contexts/authContext';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import PerfilUser from './pages/PerfilUser';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/crear-post" element={<CreatePost />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/post/:postId" element={<Post />} />
+            <Route path="/user/:userId" element={<PerfilUser />} />
           </Route>
         </Routes>
       </main>

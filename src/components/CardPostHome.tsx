@@ -4,6 +4,7 @@ import type { Post } from "../pages/Home";
 import { Eye, MessageCircle } from "lucide-react";
 import style from "./Modules/CardPostHome.module.css";
 import CirculoLetra from "./CirculoLetra";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface CardPostHomeProps {
   post: Post;
@@ -65,11 +66,9 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                 className={imageCount > 1 ? "col-6 position-relative" : ""}
               >
                 <div className={style.divImg}>
-                <img
-                  src={image.url}
+                  <ImageWithFallback src={image.url}
                   alt={`Post ${index + 1}`}
-                  className={`img-fluid rounded w-100 ${style.imagePost}`}
-                />
+                  clasStyle={`img-fluid rounded w-100 ${style.imagePost}`}/>
                 </div>
                 {index === maxImagesToShow - 1 && imageCount > maxImagesToShow && (
                   <Link
