@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { CardPostHome } from "../components/CardPostHome";
+import { motion } from "framer-motion";
 
 export interface Post {
   id: number;
@@ -153,7 +154,12 @@ export default function Home() {
 
       <div className="mx-auto" style={{ maxWidth: "700px" }}>
         {displayPosts.slice(0, visibleCount).map((post) => (
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}>
           <CardPostHome key={post.id} post={post} />
+          </motion.div>
         ))}
 
         {isWaiting && (

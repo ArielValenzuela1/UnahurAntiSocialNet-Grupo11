@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { Post } from "./Home";
 import { CardPostHome } from "../components/CardPostHome";
+import { motion } from "framer-motion";
 
 export default function Perfil() {
   const { usuario } = useAuth();
@@ -58,7 +59,7 @@ export default function Perfil() {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 650); 
+        }, 650);
       }
     };
     fetchPosts();
@@ -119,10 +120,26 @@ export default function Perfil() {
         </div>
         {posts.length === 0 &&
           <div className={style.publicacionesNoEncontradas}>
-            <User size={60} />
-            <p>Aún no has creado ninguna publicación</p>
+            <motion.div
+              animate={{
+                y: [0, -5, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}>
+              <User size={60} />
+
+            </motion.div>
+            <p style={{ color: "#90A1B9" }}>Aún no has creado ninguna publicación</p>
             <Link to="/crear-post">
-              <BotonVerde>Crear Primera Publicación</BotonVerde>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}>
+                <BotonVerde>Crear Primera Publicación</BotonVerde>
+
+              </motion.div>
             </Link>
           </div>}
 

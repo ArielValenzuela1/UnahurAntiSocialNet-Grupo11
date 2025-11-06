@@ -7,22 +7,23 @@ import { useEffect, useState } from "react";
 import type { Post } from "./Home";
 import { CardPostHome } from "../components/CardPostHome";
 import type { Usuario } from "../contexts/authContext";
+import { motion } from "framer-motion";
 
 
 export default function Perfil() {
   const { userId } = useParams();
-  const [usuario, setUsuario] = useState<Usuario | null>(null); 
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const API_URL = "http://localhost:3001";
 
-  
 
-  
+
+
   const getUser = async () => {
-    const res = await fetch(`${API_URL}/users/${userId}`); 
+    const res = await fetch(`${API_URL}/users/${userId}`);
     if (!res.ok) throw new Error("Error al obtener usuario");
     const data = await res.json();
     setUsuario(data);
@@ -58,8 +59,8 @@ export default function Perfil() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getUser(); 
-        const data = await getPosts(); 
+        await getUser();
+        const data = await getPosts();
         setPosts(data);
       } catch (err) {
         console.error(err);
@@ -126,7 +127,7 @@ export default function Perfil() {
 
       <div className={`container py-5 centered mx-auto`} style={{ maxWidth: "700px" }}>
         <h2 className="mx-auto" style={{ maxWidth: "700px" }}>
-          Mis Publicaciones
+          Publicaciones de {usuario.nickName}
         </h2>
         <div>
           {posts.reverse().map((post) => (
@@ -135,11 +136,20 @@ export default function Perfil() {
         </div>
         {posts.length === 0 && (
           <div className={style.publicacionesNoEncontradas}>
-            <User size={60} />
-            <p>Aún no has creado ninguna publicación</p>
-            <Link to="/crear-post">
-              <BotonVerde>Crear Primera Publicación</BotonVerde>
-            </Link>
+            <motion.div
+              animate={{
+                y: [0, -5, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}>
+
+              <User size={60} />
+
+            </motion.div>
+            <p>Aún no ah creo publicaciones</p>
           </div>
         )}
       </div>

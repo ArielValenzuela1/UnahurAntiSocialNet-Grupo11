@@ -102,7 +102,7 @@ export default function CreatePost() {
     }
 
     //esto no deberia pasar
-    if(!usuario) {
+    if (!usuario) {
       setError("Usuario no autenticado");
       setTimeout(() => setError(null), 3000);
       return;
@@ -212,19 +212,27 @@ export default function CreatePost() {
           <TagCard selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
 
-        {/*Div botones*/}
-        <div className="d-flex gap-3">
-          <BotonVerde>
-            <CircleFadingPlus /> Publicar
-          </BotonVerde>
+          {/*Div botones*/}
+          <div className="d-flex gap-3">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
+              <BotonVerde>
+                <CircleFadingPlus /> Publicar
+              </BotonVerde>
+            </motion.div>
 
-          <NavLink to="/">
-            <button type="button" className="btn btn-secondary">
-              Cancelar
-            </button>
-          </NavLink>
+            <NavLink to="/">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}>
+                <button type="button" className="btn btn-secondary">
+                  Cancelar
+                </button>
+              </motion.div>
+            </NavLink>
 
-        </div>
+          </div>
 
         </motion.div>
       </form>

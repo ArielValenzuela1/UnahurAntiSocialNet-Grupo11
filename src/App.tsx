@@ -13,6 +13,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import PerfilUser from './pages/PerfilUser';
 
+
 function App() {
 
   return (
@@ -20,21 +21,21 @@ function App() {
       <Header />
       <SideBar />
       <main className="MainContent">
-        <Routes>
-          <Route path="/" element={<Home />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route element={<PublicRoute />}>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-          </Route>
+            <Route element={<PublicRoute />}>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
 
-          <Route element={<PrivateRoute />}>
-            <Route path="/crear-post" element={<CreatePost />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/post/:postId" element={<Post />} />
-            <Route path="/user/:userId" element={<PerfilUser />} />
-          </Route>
-        </Routes>
+            <Route element={<PrivateRoute />}>
+              <Route path="/crear-post" element={<CreatePost />} />
+              <Route path="/perfil" element={<Perfil />} />
+              <Route path="/post/:postId" element={<Post />} />
+              <Route path="/user/:userId" element={<PerfilUser />} />
+            </Route>
+          </Routes>
       </main>
     </AuthProvider>
 

@@ -3,6 +3,7 @@ import { LogIn } from "lucide-react";
 import CirculoLetra from "./CirculoLetra";
 import style from "./Modules/GestorDeSesion.module.css";
 import { useAuth } from "../contexts/authContext";
+import { motion } from "framer-motion";
 
 export default function BotonSesion() {
   const navigate = useNavigate();
@@ -20,20 +21,28 @@ export default function BotonSesion() {
           <Link to="/perfil">
             <CirculoLetra size={40} letra={usuario.nickName[0]} />
           </Link>
-          <button className={style.botonCerrarSesion} onClick={CerrarSesion}>
-            <LogIn />
-            {' '}
-            Salir
-          </button>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <button className={style.botonCerrarSesion} onClick={CerrarSesion}>
+              <LogIn />
+              {' '}
+              Salir
+            </button>
+          </motion.div>
+
         </div>
       ) : (
-        <Link
-          to="/login"
-          className={style.botonIniciarSesion}
-        >
-          <LogIn size={20} />
-          <p>Iniciar Sesión</p>
-        </Link>
+
+        <motion.div whileTap={{ scale: 0.95 }} whileHover={{ scale: 1.05 }}>
+          <Link
+            to="/login"
+            className={style.botonIniciarSesion}
+          >
+            <LogIn size={20} />
+            <p>Iniciar Sesión</p>
+          </Link>
+        </motion.div>
+
       )}
     </div>
   );
