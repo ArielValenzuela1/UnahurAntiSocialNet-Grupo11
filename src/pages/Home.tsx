@@ -28,7 +28,7 @@ export default function Home() {
       posts.map(async (post) => {
         try {
           const [userRes, imagesRes] = await Promise.all([
-            fetch(`${API_URL}/posts/${post.UserId}`),
+            fetch(`${API_URL}/users/${post.UserId}`),
             fetch(`${API_URL}/postimages/post/${post.id}`),
           ]);
 
