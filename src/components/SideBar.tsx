@@ -102,26 +102,54 @@ export default function SideBar({ onSelectTag }: SideBarProps) {
         )}
         <hr className="text-secondary my-3" />
         <p>Etiquetas</p>
-        <div className="d-flex flex-column gap-2 mt-3">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            maxHeight: "500px",
+            overflowY: "scroll",
+            overflowX: "hidden", 
+            paddingRight: "6px",
+
+            scrollbarWidth: "none", // Lo mismo pero para distinto navegador
+            msOverflowStyle: "none", // Lo mismo pero para distinto navegador
+          }}
+        >
           {tags.map((t) => (
-            <button
+            <motion.div
               key={t.name}
-              onClick={() => handleClick(t.name)}
-              className="border-0 text-start px-2 py-1 rounded"
-              style={{
-                backgroundColor:
-                  selectedTag === t.name
-                    ? "rgba(4, 47, 46, 0.8)"
-                    : "rgba(4, 47, 46, 0.5)",
-                color: "#6EE7B7",
-                border: "1px solid rgba(16, 185, 129, 0.4)",
-                fontSize: "0.85rem",
-                cursor: "pointer",
-                transition: "all 0.2s ease-in-out",
-              }}
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}
             >
-              #{t.name} ({t.count})
-            </button>
+              <button
+                onClick={() => handleClick(t.name)}
+                className="border-0 text-start px-2 py-1 rounded d-flex justify-content-between align-items-center w-100"
+                style={{
+                  backgroundColor: "#0F172B",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease-in-out",
+                  color: "#fff",
+                  whiteSpace: "normal", 
+                  
+                }}
+              >
+                <span
+                  className="rounded"
+                  style={{
+                    backgroundColor: "rgba(4, 47, 46, 0.5)",
+                    color: "#6EE7B7",
+                    border: "1px solid rgba(16, 185, 129, 0.4)",
+                    fontSize: "0.85rem",
+                    padding: "0.25rem 0.5rem",
+                    flex: "1", 
+                  }}
+                >
+                  #{t.name}
+                </span>
+                <span style={{ color: "#6EE7B7", marginLeft: "8px" }}>{t.count}</span>
+              </button>
+            </motion.div>
           ))}
         </div>
       </div>

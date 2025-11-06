@@ -3,6 +3,7 @@ import { CardPostHome } from "../components/CardPostHome";
 import type { Post } from "../contexts/interfaces";
 import { motion } from "framer-motion";
 import Sidebar from "../components/SideBar";
+import { X } from "lucide-react";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -139,7 +140,37 @@ export default function Home() {
           <hr className="border-secondary w-50 mx-auto" />
         </div>
 
+
         <div className="mx-auto" style={{ maxWidth: "700px" }}>
+
+
+          {selectedTag ?
+            <div className="d-flex justify-content-start gap-2 align-items-center" style={{ marginBottom: "10px" }}>
+              <p className="mb-0" style={{ color: " #90A1B9" }}> Filtrado por: {' '}</p>
+
+              <span
+                className="px-2 py-1 rounded"
+                style={{
+                  backgroundColor: "rgba(4, 47, 46, 0.5)",
+                  color: "#6EE7B7",
+                  border: "1px solid rgba(16, 185, 129, 0.4)",
+                  fontSize: "0.85rem",
+                  padding: "0.25rem 0.5rem",
+                }}>
+                #{selectedTag} {' '}
+              </span>
+
+              <button 
+              className="btn d-flex align-items-center gap-1 text-secondary" 
+              style={{ paddingLeft: "5px" }}
+              onClick={() => handleTagSelect(null)}>
+                <X /> {' '} Limpiar filtro
+              </button>
+
+            </div>
+            : <p />
+          }
+
           {displayPosts
             .filter((post) =>
               selectedTag

@@ -101,8 +101,7 @@ export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
                   color: "#6EE7B7",
                   border: "1px solid rgba(16, 185, 129, 0.4)",
                   fontSize: "0.85rem",
-                }}
-              >
+                }}>
                 #{tag.name}
               </span>
             ))}
