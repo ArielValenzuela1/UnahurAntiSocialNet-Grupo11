@@ -106,7 +106,7 @@ export default function CreatePost() {
           <div className={`${style.divSeccionImagen}`}>
             <label className="form-label">Imágenes (opcional)</label>
             {imagenes.map((url, index) => (
-              <div className={`input-group ${style.divCrearImagen}`}>
+              <div key={index} className={`input-group ${style.divCrearImagen}`}>
 
                 <input type="text"
                   className={`form-control border-secondary ${style.inputUrlImagen}`}

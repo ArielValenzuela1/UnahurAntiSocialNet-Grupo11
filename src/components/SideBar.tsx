@@ -15,6 +15,14 @@ export default function SideBar() {
     setMenuAbierto(!menuAbierto);
   };
 
+   const handleInicioClick = () => {
+    if (location.pathname === "/") {
+      window.location.reload();
+    } else {
+      setMenuAbierto(false);
+    }
+  };
+
   return (
     <div className={`${style.SideBar} ${menuAbierto ? style.abierto : ""}`}>
       <button className={style.MenuToggle} onClick={toggleMenu}>
@@ -28,7 +36,7 @@ export default function SideBar() {
           className={({ isActive }) =>
             `${style.NavLink} ${isActive ? style.activo : ""}`
           }
-          onClick={toggleMenu}
+          onClick={handleInicioClick}
         >
           <House /> Inicio
         </NavLink>
