@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { CardPostHome } from "../components/CardPostHome";
 import type { Post } from "../contexts/interfaces";
 import { motion } from "framer-motion";
+import Sidebar from "../components/SideBar";
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -11,6 +12,7 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState<number>(6);
   const [isWaiting, setIsWaiting] = useState<boolean>(false);
   const [sortMode, setSortMode] = useState<"date" | "random">("date");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const waitingRef = useRef(false);
   const API_URL = "http://localhost:3001";
@@ -52,7 +54,7 @@ export default function Home() {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 300); 
+        }, 300);
       }
     };
     fetchPosts();
@@ -64,14 +66,13 @@ export default function Home() {
     } else {
       setDisplayPosts([...posts].sort(() => Math.random() - 0.5));
     }
-    setVisibleCount(6); 
+    setVisibleCount(6);
   }, [posts, sortMode]);
 
   useEffect(() => {
     const handleScroll = () => {
       const bottom =
-        window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 200;
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 200;
 
       if (bottom && visibleCount < displayPosts.length && !waitingRef.current) {
         waitingRef.current = true;
@@ -113,47 +114,63 @@ export default function Home() {
       </div>
     );
 
+  const handleTagSelect = (tag: string | null) => {
+    setSelectedTag(tag);
+  };
+
   return (
-    <div className="container py-5">
-      <div className="text-center mb-5">
-        <h1 className="fw-bold text-light mb-3">UnaHur Anti-Social Net</h1>
-        <p className="fs-5" style={{color: " #53647D"}}>
-          Explorá publicaciones de la comunidad universitaria
-        </p>
-        <button
-          className="btn btn-outline-info mt-3"
-          onClick={toggleSortMode}
-          disabled={isWaiting}
-        >
-          {sortMode === "date"
-            ? "🔀 Ordenar Aleatoriamente"
-            : "🕒 Ordenar por Fecha"}
-        </button>
-        <hr className="border-secondary w-50 mx-auto" />
-      </div>
-
-      <div className="mx-auto" style={{ maxWidth: "700px" }}>
-        {displayPosts.slice(0, visibleCount).map((post) => (
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}>
-          <CardPostHome key={post.id} post={post} />
-          </motion.div>
-        ))}
-
-        {isWaiting && (
-          <div className="text-center mt-5 text-light">
-            <div className="spinner-border text-info" role="status"></div>
-            <p className="mt-2">Cargando publicaciones...</p>
-          </div>
-        )}
-
-        {displayPosts.length === 0 && (
-          <p className="text-center text-secondary mt-5">
-            No hay publicaciones disponibles todavía.
+    <div className="d-flex">
+      <Sidebar onSelectTag={handleTagSelect} />
+      <div className="container py-5">
+        <div className="text-center mb-5">
+          <h1 className="fw-bold text-light mb-3">UnaHur Anti-Social Net</h1>
+          <p className="fs-5" style={{ color: " #53647D" }}>
+            Explorá publicaciones de la comunidad universitaria
           </p>
-        )}
+          <button
+            className="btn btn-outline-info mt-3"
+            onClick={toggleSortMode}
+            disabled={isWaiting}
+          >
+            {sortMode === "date"
+              ? "🔀 Ordenar Aleatoriamente"
+              : "🕒 Ordenar por Fecha"}
+          </button>
+          <hr className="border-secondary w-50 mx-auto" />
+        </div>
+
+        <div className="mx-auto" style={{ maxWidth: "700px" }}>
+          {displayPosts
+            .filter((post) =>
+              selectedTag
+                ? post.Tags?.some((t) => t.name === selectedTag)
+                : true
+            )
+            .slice(0, visibleCount)
+            .map((post) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <CardPostHome post={post} />
+              </motion.div>
+            ))}
+
+          {isWaiting && (
+            <div className="text-center mt-5 text-light">
+              <div className="spinner-border text-info" role="status"></div>
+              <p className="mt-2">Cargando publicaciones...</p>
+            </div>
+          )}
+
+          {displayPosts.length === 0 && (
+            <p className="text-center text-secondary mt-5">
+              No hay publicaciones disponibles todavía.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
