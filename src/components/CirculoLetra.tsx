@@ -1,9 +1,4 @@
-interface CirculoLetraProps {
-  letra: string;          // La letra que va adentro
-  size?: number;          // Tamaño del círculo en px (opcional)
-  colorFondo?: string;    // Color de fondo (opcional)
-  colorLetra?: string;    // Color de la letra (opcional)
-}
+import type { CirculoLetraProps } from "../contexts/interfaces";
 
 export default function CirculoLetra({
   letra,

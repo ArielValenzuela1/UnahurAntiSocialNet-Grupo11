@@ -1,11 +1,5 @@
 import { useState } from "react";
-
-interface ImageFallBack {
-  src: string;
-  alt: string;
-  clasStyle: string;
-  fallback?: string;
-}
+import type { ImageFallBack } from "../contexts/interfaces";
 
 export default function ImageWithFallback({ src, alt, clasStyle, fallback } : ImageFallBack) {
   const [imgSrc, setImgSrc] = useState(src);

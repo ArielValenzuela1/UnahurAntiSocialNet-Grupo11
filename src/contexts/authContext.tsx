@@ -1,37 +1,12 @@
-import type {ReactNode} from "react";
 import {
   createContext,
   useContext,
   useEffect,
   useState,
 } from "react";
-
-export interface Usuario {
-  id: string;
-  nombre: string;
-  nickName: string;
-  email: string;
-  createdAt: string;
-  logueado?: boolean;
-}
-
-export interface Tag {
-    id: number;
-    name: string;
-}
-
-interface AuthContextType {
-  usuario: Usuario | null;
-  cargando: boolean;
-  login: (user: Usuario) => void;
-  logout: () => void;
-}
+import type { AuthContextType, AuthProviderProps, Usuario } from "./interfaces";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-interface AuthProviderProps {
-  children: ReactNode;
-}
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [usuario, setUsuario] = useState<Usuario | null>(null);

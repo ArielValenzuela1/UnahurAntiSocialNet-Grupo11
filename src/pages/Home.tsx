@@ -1,27 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CardPostHome } from "../components/CardPostHome";
+import type { Post } from "../contexts/interfaces";
 import { motion } from "framer-motion";
-
-export interface Post {
-  id: number;
-  description: string;
-  UserId: number;
-  User: {
-    id: number;
-    nickName: string;
-    email: string;
-  };
-  Tags?: {
-    id: number;
-    name: string;
-  }[];
-  images?: {
-    id: number;
-    url: string;
-  }[];
-  createdAt?: string;
-  updatedAt?: string;
-}
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);

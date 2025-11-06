@@ -1,15 +1,7 @@
 import { Link } from "react-router-dom";
 import CirculoLetra from "./CirculoLetra";
 import style from "./Modules/CardComentario.module.css"
-
-interface ComentarioProps {
-    content: string;
-    createdAt: Date;
-    User: {
-        id: number;
-        nickName: string;
-    }
-}
+import type { ComentarioProps } from "../contexts/interfaces";
 
 export default function CardComentario({ content, createdAt, User }: ComentarioProps) {
     const comment = { content, createdAt, User };

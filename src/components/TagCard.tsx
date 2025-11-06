@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import { Plus } from "lucide-react";
 import style from "./Modules/TagCard.module.css"
-import type { Tag } from "../contexts/authContext";
 import { motion } from "framer-motion";
-
-interface TagSelectorProps {
-  selectedTags: number[];
-  setSelectedTags: React.Dispatch<React.SetStateAction<number[]>>;
-}
+import type { Tag, TagSelectorProps } from "../contexts/interfaces";
 
 export default function TagSelector({ selectedTags, setSelectedTags }: TagSelectorProps) {
     const [tags, setTags] = useState<Tag[]>([]);

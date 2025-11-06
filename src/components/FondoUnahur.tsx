@@ -1,9 +1,5 @@
+import type { FondoUnahurProps } from "../contexts/interfaces";
 import style from "./Modules/FondoUnahur.module.css";
-
-interface FondoUnahurProps {
-  children?: React.ReactNode;
-  redondo?: Boolean; // 👈 nueva prop opcional
-}
 
 export default function FondoUnahur({ children }: FondoUnahurProps) {
   return (

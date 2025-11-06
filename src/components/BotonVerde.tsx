@@ -1,8 +1,4 @@
-interface BotonVerdeProps {
-    children?: React.ReactNode;
-    ocupa100?: boolean;
-    onClick?: () => void;
-}
+import type { BotonVerdeProps } from "../contexts/interfaces";
 
 export default function BotonVerde({ children, ocupa100, onClick }: BotonVerdeProps
 ) {

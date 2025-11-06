@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import type { Post } from "../pages/Home";
 import { Eye, MessageCircle } from "lucide-react";
 import style from "./Modules/CardPostHome.module.css";
 import CirculoLetra from "./CirculoLetra";
 import ImageWithFallback from "./ImageWithFallback";
-
-interface CardPostHomeProps {
-  post: Post;
-}
+import type { CardPostHomeProps } from "../contexts/interfaces";
 
 export const CardPostHome: React.FC<CardPostHomeProps> = ({ post }) => {
   const [commentCount, setCommentCount] = useState<number>(0);

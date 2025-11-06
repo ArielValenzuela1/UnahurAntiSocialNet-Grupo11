@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAuth } from "../contexts/authContext";
-import type { Post } from "./Home";
 import style from "./Modules/Post.module.css";
 import CirculoLetra from "../components/CirculoLetra";
 import BotonVerde from "../components/BotonVerde";
@@ -9,17 +8,7 @@ import { Send } from "lucide-react";
 import { Carousel } from "react-bootstrap";
 import CardComentario from "../components/CardComentario";
 import ImageWithFallback from "../components/ImageWithFallback";
-
-
-interface Comment {
-  id: number;
-  content: string;
-  createdAt: Date;
-  User: {
-    id: number;
-    nickName: string;
-  };
-}
+import type { Post, Comment } from "../contexts/interfaces";
 
 export default function Post() {
   const { postId } = useParams();
