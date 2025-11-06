@@ -122,9 +122,16 @@ export default function CreatePost() {
               </div>
             ))}
             <button type="button"
-              className={`btn btn-secondary ${style.botonAgregarImagen}`}
+              className={`btn btn-secondary ${style.botonAgregarImagen} ${imagenes.length < 10 ? "" : "disabled"}`}
               onClick={agregarImagen}> <Image /> Agregar otra imagen</button>
+              {imagenes.length >= 10 ? (
+              <p className="text-warning mt-2">
+                Has alcanzado el máximo de 10 imágenes por publicación.
+              </p> ):
+              (<p/>)
+            }
           </div>
+        
           {mensaje && (
             <div className="alert alert-success text-center mt-3">{mensaje}</div>
           )}
